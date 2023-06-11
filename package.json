@@ -1,0 +1,13 @@
+{
+  "scripts": {
+    "build": "rimraf dist && pnpm -r run build",
+    "export": "pnpm -r run export",
+    "serve": "netlify dev"
+  },
+  "devDependencies": {
+    "netlify-cli": "^15.4.1",
+    "playwright-chromium": "^1.35.0",
+    "pnpm": "^8.6.1",
+    "rimraf": "^5.0.1"
+  }
+}
