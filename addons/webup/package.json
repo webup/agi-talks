@@ -1,0 +1,11 @@
+{
+  "name": "slidev-addon-webup",
+  "version": "0.1.0",
+  "keywords": [
+    "slidev",
+    "slidev-addon"
+  ],
+  "engines": {
+    "slidev": ">=0.32.0"
+  }
+}
