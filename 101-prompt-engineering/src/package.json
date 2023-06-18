@@ -1,5 +1,5 @@
 {
-  "name": "101-prompt-engineering",
+  "private": true,
   "scripts": {
     "dev": "slidev",
     "build": "slidev build --base /101-prompt-engineering/ --out ../../dist/101-prompt-engineering",
@@ -10,5 +10,10 @@
     "@slidev/cli": "^0.42.4",
     "@slidev/theme-default": "^0.21.2",
     "@slidev/theme-seriph": "^0.21.3"
+  },
+  "slidev": {
+    "addons": [
+      "../../addons/webup"
+    ]
   }
 }
