@@ -1,4 +1,4 @@
-lockfileVersion: '6.0'
+lockfileVersion: '6.1'
 
 settings:
   autoInstallPeers: true
@@ -23,12 +23,15 @@ importers:
 
   101-prompt-engineering/src:
     devDependencies:
+      '@iconify-json/ant-design':
+        specifier: ^1.1.5
+        version: 1.1.5
       '@iconify-json/mdi':
         specifier: ^1.1.52
         version: 1.1.52
       '@slidev/cli':
         specifier: ^0.42.4
-        version: 0.42.4(postcss@8.4.24)
+        version: 0.42.4(@types/node@20.3.0)(playwright-chromium@1.35.0)(postcss@8.4.24)
       '@slidev/theme-default':
         specifier: ^0.21.2
         version: 0.21.2
@@ -37,6 +40,8 @@ importers:
         version: 0.21.3
 
   addons/slidev-addon-webup: {}
+
+  addons/webup: {}
 
 packages:
 
@@ -86,7 +91,7 @@ packages:
       '@babel/traverse': 7.22.5
       '@babel/types': 7.22.5
       convert-source-map: 1.9.0
-      debug: 4.3.4
+      debug: 4.3.4(supports-color@9.3.1)
       gensync: 1.0.0-beta.2
       json5: 2.2.3
       semver: 6.3.0
@@ -363,7 +368,7 @@ packages:
       '@babel/helper-split-export-declaration': 7.22.5
       '@babel/parser': 7.22.5
       '@babel/types': 7.22.5
-      debug: 4.3.4
+      debug: 4.3.4(supports-color@9.3.1)
       globals: 11.12.0
     transitivePeerDependencies:
       - supports-color
@@ -718,6 +723,12 @@ packages:
     engines: {node: '>=10.10.0'}
     dev: true
 
+  /@iconify-json/ant-design@1.1.5:
+    resolution: {integrity: sha512-lNEC95u9QdmS3GfMLnbAjLZCfQ9i4xURyn7P4UVHa6ejjLjs5FVyi/J+itrmnBpwb36YZo4CT0GDIn2AgvkNng==}
+    dependencies:
+      '@iconify/types': 2.0.0
+    dev: true
+
   /@iconify-json/carbon@1.1.17:
     resolution: {integrity: sha512-FJCHUNP+iEGZILqu5YjByV+RBrWCsMo7YWXBJSpRMvaeVH3yjK3TI8UIc7lmPGI1NRmjThiaqjxMqe7CgQY55Q==}
     dependencies:
@@ -746,7 +757,7 @@ packages:
       '@antfu/install-pkg': 0.1.1
       '@antfu/utils': 0.7.4
       '@iconify/types': 2.0.0
-      debug: 4.3.4
+      debug: 4.3.4(supports-color@9.3.1)
       kolorist: 1.8.0
       local-pkg: 0.4.3
     transitivePeerDependencies:
@@ -1841,7 +1852,7 @@ packages:
       winston: 3.8.2
     dev: true
 
-  /@slidev/cli@0.42.4(postcss@8.4.24):
+  /@slidev/cli@0.42.4(@types/node@20.3.0)(playwright-chromium@1.35.0)(postcss@8.4.24):
     resolution: {integrity: sha512-W70ozMqCakq/IFB2cjNVdJQ/I4Hhicxr0qL8IbvkbMtYFqDsGVRxy6ZCfSEVBRn7y4/6slKntOFZLSVps2iJFg==}
     engines: {node: '>=14.0.0'}
     hasBin: true
@@ -1865,7 +1876,7 @@ packages:
       cli-progress: 3.12.0
       codemirror: 5.65.13
       connect: 3.7.0
-      debug: 4.3.4
+      debug: 4.3.4(supports-color@9.3.1)
       fast-glob: 3.2.12
       fs-extra: 11.1.1
       get-port-please: 3.0.1
@@ -1885,6 +1896,7 @@ packages:
       open: 8.4.2
       pdf-lib: 1.17.1
       plantuml-encoder: 1.4.0
+      playwright-chromium: 1.35.0
       postcss-nested: 6.0.1(postcss@8.4.24)
       prismjs: 1.29.0
       prompts: 2.4.2
@@ -1896,7 +1908,7 @@ packages:
       unocss: 0.53.1(postcss@8.4.24)(vite@4.3.9)
       unplugin-icons: 0.16.3
       unplugin-vue-components: 0.25.1(vue@3.3.4)
-      vite: 4.3.9
+      vite: 4.3.9(@types/node@20.3.0)
       vite-plugin-inspect: 0.7.28(vite@4.3.9)
       vite-plugin-remote-assets: 0.3.2(vite@4.3.9)
       vite-plugin-static-copy: 0.16.0(vite@4.3.9)
@@ -2420,7 +2432,7 @@ packages:
       chokidar: 3.5.3
       fast-glob: 3.2.12
       magic-string: 0.30.0
-      vite: 4.3.9
+      vite: 4.3.9(@types/node@20.3.0)
     transitivePeerDependencies:
       - rollup
     dev: true
@@ -2456,7 +2468,7 @@ packages:
       '@babel/core': 7.22.5
       '@babel/plugin-transform-typescript': 7.22.5(@babel/core@7.22.5)
       '@vue/babel-plugin-jsx': 1.1.1(@babel/core@7.22.5)
-      vite: 4.3.9
+      vite: 4.3.9(@types/node@20.3.0)
       vue: 3.3.4
     transitivePeerDependencies:
       - supports-color
@@ -2469,7 +2481,7 @@ packages:
       vite: ^4.0.0
       vue: ^3.2.25
     dependencies:
-      vite: 4.3.9
+      vite: 4.3.9(@types/node@20.3.0)
       vue: 3.3.4
     dev: true
 
@@ -2688,7 +2700,7 @@ packages:
   /@windicss/config@1.9.0:
     resolution: {integrity: sha512-QO4+udbmDIgZwAi89tqUt5nGwBq3IgyELjLn83twZXiIqzOw+77ecCuM0oPSbzWmIbCqXq3wRQHd6Z1u5E/5zQ==}
     dependencies:
-      debug: 4.3.4
+      debug: 4.3.4(supports-color@9.3.1)
       jiti: 1.18.2
       windicss: 3.5.6
     transitivePeerDependencies:
@@ -2700,7 +2712,7 @@ packages:
     dependencies:
       '@antfu/utils': 0.7.4
       '@windicss/config': 1.9.0
-      debug: 4.3.4
+      debug: 4.3.4(supports-color@9.3.1)
       fast-glob: 3.2.12
       magic-string: 0.30.0
       micromatch: 4.0.5
@@ -2815,16 +2827,6 @@ packages:
     engines: {node: '>=0.4.0'}
     hasBin: true
     dev: true
-
-  /agent-base@6.0.2:
-    resolution: {integrity: sha512-RZNwNclF7+MS/8bDg70amg32dyeZGZxiDuQmZxKLAlQjr3jGyLx+4Kkk58UO7D2QdgFIQCovuSuZESne6RG6XQ==}
-    engines: {node: '>= 6.0.0'}
-    dependencies:
-      debug: 4.3.4
-    transitivePeerDependencies:
-      - supports-color
-    dev: true
-    optional: true
 
   /agent-base@6.0.2(supports-color@9.3.1):
     resolution: {integrity: sha512-RZNwNclF7+MS/8bDg70amg32dyeZGZxiDuQmZxKLAlQjr3jGyLx+4Kkk58UO7D2QdgFIQCovuSuZESne6RG6XQ==}
@@ -4366,18 +4368,6 @@ packages:
       ms: 2.1.2
     dev: true
 
-  /debug@4.3.4:
-    resolution: {integrity: sha512-PRWFHuSU3eDtQJPvnNY7Jcket1j0t5OuOsFzPPzsekD52Zl8qUfFIPEiswXqIvHWGVHOgX+7G/vCNNhehwxfkQ==}
-    engines: {node: '>=6.0'}
-    peerDependencies:
-      supports-color: '*'
-    peerDependenciesMeta:
-      supports-color:
-        optional: true
-    dependencies:
-      ms: 2.1.2
-    dev: true
-
   /debug@4.3.4(supports-color@9.3.1):
     resolution: {integrity: sha512-PRWFHuSU3eDtQJPvnNY7Jcket1j0t5OuOsFzPPzsekD52Zl8qUfFIPEiswXqIvHWGVHOgX+7G/vCNNhehwxfkQ==}
     engines: {node: '>=6.0'}
@@ -5384,7 +5374,7 @@ packages:
       debug:
         optional: true
     dependencies:
-      debug: 4.3.4
+      debug: 4.3.4(supports-color@9.3.1)
     dev: true
 
   /for-in@1.0.2:
@@ -5591,7 +5581,7 @@ packages:
     dependencies:
       colorette: 2.0.20
       defu: 6.1.2
-      https-proxy-agent: 5.0.1
+      https-proxy-agent: 5.0.1(supports-color@9.3.1)
       mri: 1.2.0
       node-fetch-native: 1.2.0
       pathe: 1.1.1
@@ -5974,17 +5964,6 @@ packages:
       quick-lru: 5.1.1
       resolve-alpn: 1.2.1
     dev: true
-
-  /https-proxy-agent@5.0.1:
-    resolution: {integrity: sha512-dFcAjpTQFgoLMzC2VwU+C/CbS7uRL0lWmxDITmqm7C+7F0Odmj6s9l6alZc6AELXhrnggM2CeWSXHGOdX2YtwA==}
-    engines: {node: '>= 6'}
-    dependencies:
-      agent-base: 6.0.2
-      debug: 4.3.4
-    transitivePeerDependencies:
-      - supports-color
-    dev: true
-    optional: true
 
   /https-proxy-agent@5.0.1(supports-color@9.3.1):
     resolution: {integrity: sha512-dFcAjpTQFgoLMzC2VwU+C/CbS7uRL0lWmxDITmqm7C+7F0Odmj6s9l6alZc6AELXhrnggM2CeWSXHGOdX2YtwA==}
@@ -7251,7 +7230,7 @@ packages:
     resolution: {integrity: sha512-uD66tJj54JLYq0De10AhWycZWGQNUvDI55xPgk2sQM5kn1JYlhbCMTtEeT27+vAhW2FBQxLlOmS3pmA7/2z4aA==}
     dependencies:
       '@types/debug': 4.1.8
-      debug: 4.3.4
+      debug: 4.3.4(supports-color@9.3.1)
       decode-named-character-reference: 1.0.2
       micromark-core-commonmark: 1.1.0
       micromark-factory-space: 1.1.0
@@ -10037,7 +10016,7 @@ packages:
       '@antfu/install-pkg': 0.1.1
       '@antfu/utils': 0.7.4
       '@iconify/utils': 2.1.6
-      debug: 4.3.4
+      debug: 4.3.4(supports-color@9.3.1)
       kolorist: 1.8.0
       local-pkg: 0.4.3
       unplugin: 1.3.1
@@ -10061,7 +10040,7 @@ packages:
       '@antfu/utils': 0.7.4
       '@rollup/pluginutils': 5.0.2
       chokidar: 3.5.3
-      debug: 4.3.4
+      debug: 4.3.4(supports-color@9.3.1)
       fast-glob: 3.2.12
       local-pkg: 0.4.3
       magic-string: 0.30.0
@@ -10225,12 +10204,12 @@ packages:
     dependencies:
       '@antfu/utils': 0.7.4
       '@rollup/pluginutils': 5.0.2
-      debug: 4.3.4
+      debug: 4.3.4(supports-color@9.3.1)
       fs-extra: 11.1.1
       open: 9.1.0
       picocolors: 1.0.0
       sirv: 2.0.3
-      vite: 4.3.9
+      vite: 4.3.9(@types/node@20.3.0)
     transitivePeerDependencies:
       - rollup
       - supports-color
@@ -10242,10 +10221,10 @@ packages:
       vite: ^2.0.0 || ^3.0.0 || ^4.0.0
     dependencies:
       axios: 1.4.0(debug@4.3.4)
-      debug: 4.3.4
+      debug: 4.3.4(supports-color@9.3.1)
       fs-extra: 11.1.1
       magic-string: 0.30.0
-      vite: 4.3.9
+      vite: 4.3.9(@types/node@20.3.0)
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -10260,7 +10239,7 @@ packages:
       fast-glob: 3.2.12
       fs-extra: 11.1.1
       picocolors: 1.0.0
-      vite: 4.3.9
+      vite: 4.3.9(@types/node@20.3.0)
     dev: true
 
   /vite-plugin-vue-markdown@0.23.5(vite@4.3.9):
@@ -10275,7 +10254,7 @@ packages:
       '@rollup/pluginutils': 5.0.2
       '@types/markdown-it': 12.2.3
       markdown-it: 13.0.1
-      vite: 4.3.9
+      vite: 4.3.9(@types/node@20.3.0)
     transitivePeerDependencies:
       - rollup
     dev: true
@@ -10286,9 +10265,9 @@ packages:
       vite: ^2.0.0 || ^3.0.0 || ^4.0.0
       vue: ^3.0.0
     dependencies:
-      debug: 4.3.4
+      debug: 4.3.4(supports-color@9.3.1)
       ufo: 1.1.2
-      vite: 4.3.9
+      vite: 4.3.9(@types/node@20.3.0)
       vue: 3.3.4
     transitivePeerDependencies:
       - supports-color
@@ -10300,15 +10279,15 @@ packages:
       vite: ^2.0.1 || ^3.0.0 || ^4.0.0
     dependencies:
       '@windicss/plugin-utils': 1.9.0
-      debug: 4.3.4
+      debug: 4.3.4(supports-color@9.3.1)
       kolorist: 1.8.0
-      vite: 4.3.9
+      vite: 4.3.9(@types/node@20.3.0)
       windicss: 3.5.6
     transitivePeerDependencies:
       - supports-color
     dev: true
 
-  /vite@4.3.9:
+  /vite@4.3.9(@types/node@20.3.0):
     resolution: {integrity: sha512-qsTNZjO9NoJNW7KnOrgYwczm0WctJ8m/yqYAMAK9Lxt4SoySUfS5S8ia9K7JHpa3KEeMfyF8LoJ3c5NeBJy6pg==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
@@ -10333,6 +10312,7 @@ packages:
       terser:
         optional: true
     dependencies:
+      '@types/node': 20.3.0
       esbuild: 0.17.19
       postcss: 8.4.24
       rollup: 3.25.0

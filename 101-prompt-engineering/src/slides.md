@@ -6,7 +6,8 @@ theme: 'seriph'
 titleTemplate: '%s｜WebUP'
 # some information about the slides, markdown enabled
 info: |
-  AGI 学习笔记，仅供个人学习使用# favicon, can be a local file path or URL
+  AGI 学习笔记，仅供个人学习使用
+# favicon, can be a local file path or URL
 favicon: https://files.codelife.cc/user-website-icon/20220523/5hyKeZxOknU2owAPvnSWD1388.png?x-oss-process=image/resize,limit_0,m_fill,w_25,h_25/quality,q_92/format,webp
 # enabled pdf downloading in SPA build, can also be a custom url
 download: 'https://github.com/webup/agi-talks/raw/master/pdfs/101-prompt-engineering.pdf'
@@ -20,9 +21,9 @@ record: 'build'
 transition: fade
 # default frontmatter applies to all slides
 defaults:
-  hideInToc: true
 
 # slide configurations
+hideInToc: true
 layout: cover
 class: text-center
 background: https://source.unsplash.com/collection/94734566/1920x1080 
@@ -54,7 +55,12 @@ Prompt Engineering in Action
 </div>
 
 ---
+src: ../../pages/common/toc.md
+---
+
+---
 layout: two-cols
+title: 基础 LLM vs. 指令微调 LLM
 ---
 
 # 基础 LLM
@@ -140,8 +146,11 @@ Model Limitations
 
 ---
 src: ../../pages/playground/openai.md
+hideInToc: true
 ---
 
+---
+level: 2
 ---
 
 # 策略一：使用分隔符清楚地限定输入的不同部分
@@ -154,6 +163,8 @@ src: ../../pages/playground/openai.md
 <Val id="webup.chatSampleDelimeter" />
 
 ---
+level: 2
+---
 
 # 策略二：要求一个结构化的输出
 
@@ -163,6 +174,8 @@ src: ../../pages/playground/openai.md
 
 <Val id="webup.chatSampleFormatOutput" />
 
+---
+level: 2
 ---
 
 # 策略三：要求模型检查是否满足条件
@@ -174,6 +187,8 @@ src: ../../pages/playground/openai.md
 <Val id="webup.chatSampleSatisfication" />
 
 ---
+level: 2
+---
 
 # 策略三：要求模型检查是否满足条件（提供出路）
 
@@ -183,6 +198,8 @@ src: ../../pages/playground/openai.md
 
 <Val id="webup.chatSampleHallucinationExit" height="40%" />
 
+---
+level: 2
 ---
 
 # 策略四：提供少量示例
@@ -194,6 +211,8 @@ src: ../../pages/playground/openai.md
 <Val id="webup.chatSampleFewShot" />
 
 ---
+level: 2
+---
 
 # 策略五：指定完成任务所需的步骤
 
@@ -204,6 +223,8 @@ src: ../../pages/playground/openai.md
 <Val id="webup.chatSampleStepByStep" />
 
 ---
+level: 2
+---
 
 # 策略五：指定完成任务所需的步骤（续）
 
@@ -211,6 +232,8 @@ src: ../../pages/playground/openai.md
 
 <Val id="webup.chatSampleStepByStepFormat" />
 
+---
+level: 2
 ---
 
 # 策略六：指导模型在下结论前找出自己的解法
@@ -221,6 +244,8 @@ src: ../../pages/playground/openai.md
 
 <Val id="webup.chatSampleCheckAnswer" />
 
+---
+level: 2
 ---
 
 # 策略六：指导模型在下结论前找出自己的解法（续）
@@ -240,6 +265,8 @@ src: ../../pages/playground/openai.md
 <Val id="webup.chatSamplePolishNothing" />
 
 ---
+level: 2
+---
 
 # 问题一：生成文本太长
 
@@ -249,6 +276,8 @@ src: ../../pages/playground/openai.md
 
 <Val id="webup.chatSamplePolishTooLong" />
 
+---
+level: 2
 ---
 
 # 问题二：文本关注在错误的细节上
@@ -260,9 +289,86 @@ src: ../../pages/playground/openai.md
 <Val id="webup.chatSamplePolishBadFocus" />
 
 ---
+level: 2
+---
 
-# 问题三：需要一个表格形式的描述
+# 问题三：需要一个更好的呈现形式
 
 解决方法：要求模型抽取信息并组织成表格，并指定表格的列、表名和格式（如 HTML）
 
 <Val id="webup.chatSamplePolishHTMLTable" />
+
+---
+layout: quote
+hideInToc: true
+---
+
+# 大语言模型能力概览
+
+概括（Summerize）、推断（Infer）、转换（Transform）、扩展（Expand）
+
+---
+
+# 模型能力：概括（Summerize）
+
+子能力：限制输出长度，侧重关键角度，提取关键信息
+
+如果我们只想要提取某一角度的信息，并过滤掉其他所有信息，可以要求模型进行文本提取（Extract）。
+
+<Val id="webup.chatSampleExtract" />
+
+---
+
+# 模型能力：推断（Infer）· 情绪
+
+大语言模型可以从一段文本中提取正面或负面情感
+
+在如下示例中，我们要求模型对一份客户反馈进行情绪推断，并抽取相关信息后进行格式化输出。
+
+<Val id="webup.chatSampleInferEmotion" />
+
+---
+
+# 模型能力：推断（Infer）· 主题
+
+大语言模型也可以推断一段文本是关于什么的、有什么话题
+
+在如下示例中，我们要求模型从一片虚构的文章中推断出其中的五个主题。
+
+<Val id="webup.chatSampleInferTopic" />
+
+---
+
+# 模型能力：推断（Infer）· 分类
+
+基于对于主题的推断，大语言模型还可以帮忙把主题和给定的分类进行映射
+
+<Val id="webup.chatSampleInferCategory" />
+
+---
+
+# 模型能力：转换（Transform）
+
+大语言模型非常擅长将输入转换成不同的格式，如多语种文本翻译、拼写及语法纠正、语气调整、格式转换等
+
+如下的示例展示了一个综合样例，包括了文本翻译、拼写纠正、风格调整和格式转换。
+
+<Val id="webup.chatSampleTransform" />
+
+---
+
+# 模型能力：扩展（Expand）
+
+扩展是将短文本，例如一组说明或主题列表，输入给大型语言模型，让它生成更长的文本
+
+如下示例中，我们将根据客户评价和对应的情感，要求模型撰写自定义电子邮件响应。
+
+<Val id="webup.chatSampleExpandEmail" />
+
+---
+src: ../../pages/common/refs.md
+---
+
+---
+src: ../../pages/common/end.md
+---
