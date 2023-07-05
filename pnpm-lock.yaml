@@ -1,4 +1,4 @@
-lockfileVersion: '6.1'
+lockfileVersion: '6.0'
 
 settings:
   autoInstallPeers: true
@@ -39,7 +39,14 @@ importers:
         specifier: ^0.21.3
         version: 0.21.3
 
-  addons/slidev-addon-webup: {}
+  102-openai-api/src:
+    devDependencies:
+      '@slidev/cli':
+        specifier: ^0.42.4
+        version: 0.42.4(@types/node@20.3.0)(playwright-chromium@1.35.0)(postcss@8.4.24)
+      '@slidev/theme-seriph':
+        specifier: ^0.21.3
+        version: 0.21.3
 
   addons/webup: {}
 
@@ -50,7 +57,7 @@ packages:
     engines: {node: '>=6.0.0'}
     dependencies:
       '@jridgewell/gen-mapping': 0.3.3
-      '@jridgewell/trace-mapping': 0.3.9
+      '@jridgewell/trace-mapping': 0.3.18
     dev: true
 
   /@antfu/install-pkg@0.1.1:

@@ -1,0 +1,17 @@
+{
+  "private": true,
+  "scripts": {
+    "dev": "slidev",
+    "build": "slidev build --base /102-openai-api/ --out ../../dist/openai-api",
+    "export": "slidev export --dark --timeout 0 --output ../../pdfs/101-openai-api.pdf"
+  },
+  "devDependencies": {
+    "@slidev/cli": "^0.42.4",
+    "@slidev/theme-seriph": "^0.21.3"
+  },
+  "slidev": {
+    "addons": [
+      "../../addons/webup"
+    ]
+  }
+}
