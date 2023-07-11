@@ -20,5 +20,6 @@ hideInToc: true
 
 ###### <mdi-code /> 代码资料
 
+- [openai/openai-cookbook: Examples and guides for using the OpenAI API](https://github.com/openai/openai-cookbook)
 - [datawhalechina/prompt-engineering-for-developers: 吴恩达大模型系列课程中文版](https://github.com/datawhalechina/prompt-engineering-for-developers)
 - [slidevjs/slidev: Presentation Slides for Developers](https://github.com/slidevjs/slidev)
