@@ -2,8 +2,8 @@
   "private": true,
   "scripts": {
     "dev": "slidev",
-    "build": "slidev build --base /102-openai-api/ --out ../../dist/openai-api",
-    "export": "slidev export --dark --timeout 0 --output ../../pdfs/101-openai-api.pdf"
+    "build": "slidev build --base /102-openai-api/ --out ../../dist/102-openai-api",
+    "export": "slidev export --dark --timeout 0 --output ../../pdfs/102-openai-api.pdf"
   },
   "devDependencies": {
     "@slidev/cli": "^0.42.4",

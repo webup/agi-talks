@@ -1,6 +1,7 @@
 {
   "rewrites": [
     { "source": "/101-prompt-engineering/(.*)", "destination": "/101-prompt-engineering/index.html" },
+    { "source": "/102-openai-api/(.*)", "destination": "/102-openai-api/index.html" },
     { "source": "/(.*)", "destination": "https://github.com/webup/agi-talks" }
   ]
 }

@@ -92,6 +92,11 @@ hideInToc: true
 - <Wiki id="GPT-4">GPT-4</Wiki> 是由 OpenAI 在 2023 年 3 月 推出的 <Wiki id="Multimodel_learning">多模态</Wiki> 大语言模型
 
 ---
+src: ../../pages/playground/openai.md
+hideInToc: true
+---
+
+---
 layout: quote
 hideInToc: true
 ---
@@ -102,7 +107,7 @@ Chat Completions，Completions, Embeddings，Moderations
 
 ---
 
-# 最常用且最直白的 API：Chat Completions
+# 对话补全 API：Chat Completions
 
 ChatGPT（及高仿）对话机器人应用的基石
 
@@ -193,7 +198,7 @@ level: 3
 
 # 关于 Token 切分的迷思
 
-以英文为例，怎么理解 “一个 Token 一般对应 4 个字符或者 3/4 个单词”
+以英文为例，怎么理解 “一个 Token 一般对应 4 个字符或者 3/4 个单词”；参见 [更多示例](https://github.com/openai/openai-cookbook/blob/main/examples/How_to_count_tokens_with_tiktoken.ipynb)
 
 <Val id="webup.chatSampleReverseToken" height="40%" /><br />
 
@@ -226,7 +231,7 @@ level: 3
 
 ---
 
-# 很熟悉又很陌生的 API：Completions
+# 文本补全 API：Completions
 
 常用于给定主题的文章编写、代码片段的解读
 
@@ -258,7 +263,7 @@ level: 2
 
 # Completions API 的常用参数
 
-请访问 [官方文档](https://platform.openai.com/docs/api-reference/completions) 了解完整的参数
+请访问 [官方文档](https://platform.openai.com/docs/api-reference/completions) 了解完整的参数；该接口及其模型 [逐步退役](https://openai.com/blog/gpt-4-api-general-availability) 中
 
 ###### Required
 
@@ -285,9 +290,9 @@ level: 2
 
 ---
 
-# 超实用却很陌生的 API：Embeddings
+# 文本向量 API：Embeddings
 
-面向文本问答、文本检索这类功能的基石
+面向文本问答、文本检索这类功能的基石；可访问 [官方文档](https://platform.openai.com/docs/api-reference/embeddings) 了解完整参数
 
 <mdi-import /> 一条或一组文本；<mdi-export /> 文本或 Token 对应的向量数组表达
 
@@ -327,9 +332,9 @@ level: 2
 
 ---
 
-# 挺有用但不常用的 API：Moderations
+# 文本审查 API：Moderations
 
-帮助开发人员识别和过滤各种类别的违禁内容，例如仇恨、自残、色情和暴力等
+识别和过滤各种类别的违禁内容，例如仇恨、自残、色情和暴力等；可访问 [官方文档](https://platform.openai.com/docs/api-reference/moderations) 了解完整参数
 
 <mdi-import /> 一条或一组文本；<mdi-export /> OpenAI [监督标准](https://platform.openai.com/docs/guides/moderation) 评分
 
@@ -372,7 +377,172 @@ layout: quote
 hideInToc: true
 ---
 
-# 函数调用（Function Call）
+# 函数调用（Function Calling）
 
-Chat Completions 的新神器
+Chat Completions 的新神器 🚀
 
+---
+title: Chat Completions 神器：Function Calling
+---
+
+# 函数调用的点睛之处
+
+并非直接调用函数，而是告诉你应该怎么调用函数（包括用什么参数）
+
+⛓️ 函数调度的基本流程：
+
+1. 使用 Chat Completions <B>接口请求参数中定义的一组函数</B>来调用模型（参见 [定义格式](https://platform.openai.com/docs/api-reference/chat/create#chat/create-functions)）
+2. <B>模型可以选择调用函数</B> —— 输出一个符合用户自定义模式的字符串化 JSON 对象
+   - 注意：模型可能会生成无效的 JSON 或幻觉参数
+   - 幻觉参数输出通常可以通过系统消息来缓解，例如请尝试使用系统消息：“仅使用已经提供的函数”
+3. 【可选】用户可以将字符串解析为代码中的 JSON，并<B>使用提供的参数调用实际的函数</B>（如果它们确实存在） 
+4. 【可选】将实际的<B>函数的响应作为新的输入消息再次调用模型</B>，并让模型将结果汇总（总结、解释）给用户
+
+<br />
+
+🪄 函数调用的重要意义：
+
+- 为用户函数定义了官方统一的描述格式（基于 [JSON Schema](https://json-schema.org/understanding-json-schema/)，代价是计入输入 Token）
+- 为用户提供了一个“后门”确保对话可以输出 JSON 格式数据（有效简化了提示）
+
+---
+level: 2
+---
+
+# 🌰 函数调用的基本流程示例
+
+在如下示例中，我们要求模型查询波士顿的温度，并提供了对应的可用函数供调用
+
+<Val id="webup.chatSampleFunctionSingle" />
+
+---
+level: 2
+---
+
+# 🌰 自主选择函数进行问答的示例（函数准备）
+
+在如下示例中，我们准备两个函数定义，分别是：获取当日天气预报、获取多日的天气预报
+
+<Val id="webup.schemasWeather" />
+
+---
+level: 2
+---
+
+# 🌰 自主选择函数进行问答的示例（问答过程）
+
+在问答阶段，针对不同的提示，模型可以自主选择合适的函数调用并提供参数
+
+<Val id="webup.chatSampleFunctionMultiple" />
+
+---
+layout: quote
+---
+
+# OpenAI Functions 的衍生
+
+巧用模型自主填充函数参数的特性可以做些什么？
+
+---
+level: 2
+---
+
+# 🌰 函数调用能力的衍生：文本提取
+
+在如下示例中，利用函数提取文本中目标内容并进行 JSON 格式化输出
+
+<Val id="webup.chatSampleFunctionExtraction" />
+
+---
+level: 2
+---
+
+# 🌰 函数调用能力的衍生：文本标签
+
+在如下示例中，利用函数推测文本相关内容并进行 JSON 格式化输出
+
+<Val id="webup.chatSampleFunctionTagging" />
+
+---
+layout: quote
+hideInToc: true
+---
+
+# 还有哪些接口值得关注？
+
+还有一些看似“平平无奇”的接口 😄
+
+---
+
+# 模型调优 API：Fine-tunes
+
+面向私域数据优化模型；可访问 [使用指南](https://platform.openai.com/docs/guides/fine-tuning) 及 [接口明细](https://platform.openai.com/docs/api-reference/fine-tunes) 了解所有接口及其参数应用
+
+微调（Fine-tuning）的收益主要包括：
+
+- 相比提示工程的有限输入，可以<B>训练更多数据</B>（通常是文件级别）
+- 训练后针对私域数据，可以使用<B>更短的提示词，得到更快更好的结果</B>
+
+<br />
+
+哪些模型可以被微调：
+
+- 目前只支持 4 个<B>基础模型</B>：`davinci`、`curie`、`babbage`、`ada`
+  - 注意这些不是其它接口所使用的指令优化模型，例如 `text-davinci-003`
+  - 模型微调的费用详见 OpenAI [官方报价](https://openai.com/pricing#language-models)（分为两类：训练、使用）
+- 训练数据需要使用 [JSONL](https://jsonlines.org/) 格式，每行都是一对 `prompt`-`completion` 数据（参见 [训练数据准备工具](https://platform.openai.com/docs/guides/fine-tuning)）
+- 用户微调过的模型可以持续地 [再次进行微调](https://platform.openai.com/docs/guides/fine-tuning/continue-fine-tuning-from-a-fine-tuned-model)
+
+---
+
+# 图片生成 API：Images
+
+基于文化或图片来生成图片；可访问 [使用指南](https://platform.openai.com/docs/guides/images) 及 [接口明细](https://platform.openai.com/docs/api-reference/images) 了解所有接口及其参数应用
+
+🎯 目前使用的模型是 [DALL·E](https://platform.openai.com/docs/models/dall-e)，其能力主要包括：
+
+- 根据文本提示从零开始创建图像
+- 根据新文本提示创建修改现有图像
+- 根据现有图像（最大 4MB）生成它的变体
+
+<br />
+
+> 💡 可访问 [DALL·E 预览应用](https://labs.openai.com/) 来体验图片生成效果（竟然还收费卖积点 😼）
+
+<br />
+
+🚧 目前接口在使用上的一些限制：
+
+- 图片数量：`1` 至 `10` 张
+- 图片尺寸：`256x256`，`512x512`，`1024x1024`（越小生成的越快）
+- 提示工程：修改图片需要重新描述完整的图片（即使已通过输入遮罩指定修改区域，[参考样例](https://github.com/openai/openai-cookbook/blob/main/examples/dalle/How_to_create_dynamic_masks_with_DALL-E_and_Segment_Anything.ipynb)）
+
+---
+
+# 语音成文 Audio
+
+ STT（Speech to Text）语音转文本；可访问 [使用指南](https://platform.openai.com/docs/guides/speech-to-text) 及 [接口明细](https://platform.openai.com/docs/api-reference/audio) 了解所有接口及其参数应用
+
+ 🎯 目前使用的模型是 [Whisper](https://openai.com/research/whisper)（`whisper-1`），其能力主要包括：
+
+- 将音频转录为音频所使用的任何语言文本
+- 将音频翻译并转录为英语文本
+
+<br />
+
+🚧 目前接口在使用上的一些限制：
+
+- 文件大小：上次最大不超过 25 MB
+- 文件格式：`mp3`、`mp4`、`mpeg`、`mpga`、`m4a`、`wav`、`webm`
+- 提示工程：使用提示来提高生成的转录文本的质量，仅提供对生成的音频的有限控制（[参考样例](https://github.com/openai/openai-cookbook/blob/main/examples/Whisper_prompting_guide.ipynb)）
+  - 对于纠正模型在音频中经常错误识别的特定单词或首字母缩略词非常有帮助
+  - 有些语言可以以不同的方式书写（例如简体中文和繁体中文），可以通过提示写作风格来选定
+  - 为了保留被拆分为段的文件的上下文，可以使用前一段的记录提示模型
+
+---
+src: ../../pages/common/refs.md
+---
+
+---
+src: ../../pages/common/end.md
+---

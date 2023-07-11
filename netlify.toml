@@ -12,6 +12,11 @@
   status = 200
 
 [[redirects]]
+  from = "/102-openai-api/*"
+  to = "/102-openai-api/index.html"
+  status = 200
+
+[[redirects]]
   from = "/"
   to = "https://github.com/webup/agi-talks"
   status = 302
