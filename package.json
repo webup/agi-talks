@@ -3,12 +3,14 @@
   "scripts": {
     "build": "rimraf dist && pnpm -r run build",
     "export": "pnpm -r run export",
-    "serve": "netlify dev"
+    "serve:netlify": "netlify dev",
+    "serve:vercel": "vercel dev"
   },
   "devDependencies": {
-    "netlify-cli": "^15.4.1",
+    "netlify-cli": "^15.8.1",
     "playwright-chromium": "^1.35.0",
-    "pnpm": "^8.6.1",
-    "rimraf": "^5.0.1"
+    "pnpm": "^8.6.7",
+    "rimraf": "^5.0.1",
+    "vercel": "^31.0.2"
   }
 }
