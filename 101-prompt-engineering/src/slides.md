@@ -55,6 +55,10 @@ Prompt Engineering in Action
 </div>
 
 ---
+src: ../../pages/common/series.md
+---
+
+---
 src: ../../pages/common/toc.md
 ---
 

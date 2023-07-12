@@ -55,6 +55,10 @@ OpenAI API Walkthrough
 </div>
 
 ---
+src: ../../pages/common/series.md
+---
+
+---
 src: ../../pages/common/toc.md
 ---
 
