@@ -147,7 +147,7 @@ level: 2
 
 # Chat Completions API 的常用参数
 
-请访问 [官方文档](https://platform.openai.com/docs/api-reference/chat/create) 了解完整的参数；最新发布的 Functions Call 功能详见 后续章节
+请访问 [官方文档](https://platform.openai.com/docs/api-reference/chat/create) 了解完整的参数；最新发布的 Functions Call 功能详见 <Link to="21">后续章节</Link>
 
 ###### Required
 
@@ -177,7 +177,7 @@ GPT 系列模型使用 Token 处理文本，模型了解这些 Token 之间的�
 
 ###### Token 的切分
 
-- 对于英文输入，一个 Token 一般对应 4 个字符或者 3/4 个单词
+- 对于英文输入，一个 Token 一般对应 4 个字符或者四分之三个单词
 - 对于中文输入，一个 Token 一般对应一个或半个词
 
 <br />
@@ -202,7 +202,7 @@ level: 3
 
 # 关于 Token 切分的迷思
 
-以英文为例，怎么理解 “一个 Token 一般对应 4 个字符或者 3/4 个单词”；参见 [更多示例](https://github.com/openai/openai-cookbook/blob/main/examples/How_to_count_tokens_with_tiktoken.ipynb)
+以英文为例，怎么理解 “一个 Token 一般对应 4 个字符或者四分之三个单词”；参见 [更多示例](https://github.com/openai/openai-cookbook/blob/main/examples/How_to_count_tokens_with_tiktoken.ipynb)
 
 <Val id="webup.chatSampleReverseToken" height="40%" /><br />
 
@@ -523,7 +523,7 @@ hideInToc: true
 
 ---
 
-# 语音成文 Audio
+# 语音成文 API：Audio
 
  STT（Speech to Text）语音转文本；可访问 [使用指南](https://platform.openai.com/docs/guides/speech-to-text) 及 [接口明细](https://platform.openai.com/docs/api-reference/audio) 了解所有接口及其参数应用
 
