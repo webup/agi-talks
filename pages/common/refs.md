@@ -14,6 +14,8 @@ hideInToc: true
 
 ###### <mdi-text /> 图文资料
 
+- [Core Concepts | 🦜️🔗 LangChain](https://docs.langchain.com/)
+  - [JS/TS Docs](https://js.langchain.com/), [Python Docs](https://python.langchain.com/), [LangSmith Docs](https://docs.smith.langchain.com/)
 - [入门：Prompts（提示词）｜通往 AGI 之路](https://ywh1bkansf.feishu.cn/wiki/Q5mXww4rriujFFkFQOzc8uIsnah?table=tbldSgFt2xNUDNAz&view=vewo2g2ktO)
 
 <br />
