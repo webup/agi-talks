@@ -6,10 +6,7 @@
     "export": "slidev export --dark --timeout 0 --output ../../pdfs/101-prompt-engineering.pdf"
   },
   "devDependencies": {
-    "@iconify-json/ant-design": "^1.1.5",
-    "@iconify-json/mdi": "^1.1.52",
     "@slidev/cli": "^0.42.4",
-    "@slidev/theme-default": "^0.21.2",
     "@slidev/theme-seriph": "^0.21.3"
   },
   "slidev": {
