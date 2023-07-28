@@ -327,11 +327,11 @@ export const embed = async (input, model = "text-embedding-ada-002") => {
 level: 2
 ---
 
-# Emeddings 如何用于文本问答
+# Embeddings 如何用于文本问答
 
 这部分内容会在 201 LangChain Components 分享中详细介绍
 
-![Pinecone](https://miro.medium.com/v2/resize:fit:1920/format:webp/1*Wpfc5762Y_GGmrcRaiDXmw.png)
+![Pinecone](https://s2.loli.net/2023/07/29/G6pqxYQcNK7tPJo.webp)
 
 
 ---
