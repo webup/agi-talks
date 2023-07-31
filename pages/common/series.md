@@ -13,6 +13,6 @@ hideInToc: true
 
 ###### LangChain in Action
 
-- 201：LangChain 核心组件走读
-- 202：LangChain Agent 概览
+- [201：LangChain 功能模块解析（上篇）](https://agi-talks.vercel.app/201-langchain-modules/)
+- 202：LangChain 功能模块解析（下篇）
 - 203：LangChain ChatBot 示例
