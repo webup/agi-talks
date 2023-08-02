@@ -211,6 +211,16 @@ level: 2
 <Val id="webup.parserSampleJSONZod" />
 
 ---
+level: 2
+---
+
+# Expression Language <Version>0.0.121</Version>: LLM Chain
+
+现在可以用管道直接把 Prompt ➡️ Model ➡️ Output Parser 串联起来
+
+<Val id="webup.pipeSampleLLM" />
+
+---
 layout: quote
 ---
 
@@ -306,6 +316,36 @@ level: 2
   - 使用给定查询的上下文来压缩它们，以便只返回相关信息，而不是立即按原样返回检索到的文档
 
 ![](https://s2.loli.net/2023/07/30/HQx5JIGrEVPfz8R.jpg)
+
+---
+level: 2
+---
+
+# Expression Language <Version>0.0.121</Version>: LLM Chain + Retriever
+
+可以用管道直接把 Prompt ➡️ Model ➡️ Output Parser ➡️ Retriever 串联起来
+
+<Val id="webup.pipeSampleLLMRetriever" />
+
+---
+level: 2
+---
+
+# Expression Language <Version>0.0.121</Version>: LLM Chain + Retriever
+
+在上个示例中，我们将字符串输入直接传递到链路中；如希望链路接受多个输入，可以传递函数映射来解析输入
+
+<Val id="webup.pipeSampleLLMRetrieverInputs" />
+
+---
+level: 2
+---
+
+# Expression Language <Version>0.0.121</Version>: LLM Chain + Retriever
+
+在上个示例中，我们使链路接受了多个输入；我们还可以通过格式化函数添加对话历史记录
+
+<Val id="webup.pipeSampleLLMRetrieverConversation" />
 
 ---
 layout: quote
