@@ -107,7 +107,7 @@ hideInToc: true
 
 # OpenAI API 概览
 
-Chat Completions，Completions, Embeddings，Moderations
+Chat Completions，Completions，Embeddings，Moderations
 
 ---
 
