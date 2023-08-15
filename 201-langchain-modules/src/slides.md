@@ -69,6 +69,12 @@ hideInToc: true
 ---
 
 ---
+layout: iframe
+url: http://player.bilibili.com/player.html?aid=786400485&bvid=BV1214y1X7Aq&cid=1211541734
+hideInToc: true
+---
+
+---
 
 # LangChain 核心模块概览
 
@@ -124,11 +130,19 @@ level: 2
 
 - [LLM](https://js.langchain.com/docs/modules/model_io/models/llms/)：将文本字符串作为输入，并返回续写文本的应用模型
 
-<Val id="webup.modelSampleLLMCall" height="30%" /><br/>
+<Val id="webup.modelSampleLLMCall" />
+
+---
+level: 2
+---
+
+# Models：一切的缘起 <sub>(cont.)</sub>
+
+在 LangChain 中，把模型分成三类：LLM 大语言模型，Chat 对话模型，Embeddings 嵌入模型
   
 - [Chat](https://js.langchain.com/docs/modules/model_io/models/chat/)：基于 LLM 支持并将聊天消息序列作为输入，并返回聊天消息的应用模型
 
-<Val id="webup.modelSampleChatCall" height="40%" />
+<Val id="webup.modelSampleChatCall" />
 
 ---
 level: 2
@@ -138,9 +152,7 @@ level: 2
 
 通用接口也支持批处理调用，并返回更丰富的响应内容
 
-<Val id="webup.modelSampleLLMGenerate" height="40%" /><br/>
-
-<Val id="webup.modelSampleChatGenerate" height="50%" />
+<Val id="webup.modelSampleLLMGenerate" height="90%" />
 
 ---
 level: 2
@@ -150,11 +162,17 @@ level: 2
 
 [Prompt Template](https://js.langchain.com/docs/modules/model_io/prompts/prompt_templates/) 是一个带标记的文本字符串，可以接收来自最终用户的一组参数并生成提示
 
-<Val id="webup.promptSampleTemplates" height="40%" />
+<Val id="webup.promptSampleTemplates" />
+
+---
+level: 2
+---
+
+# Prompts 的模板能力：Partial
 
 模板也提供 [Partial](https://js.langchain.com/docs/modules/model_io/prompts/prompt_templates/partial) 的形式，用于分阶段的注入参数（变量内容）
 
-<Val id="webup.promptSampleTemplatesPartial" height="40%" />
+<Val id="webup.promptSampleTemplatesPartial" />
 
 ---
 level: 2
@@ -162,9 +180,7 @@ level: 2
 
 # Prompts 模板的组合
 
-可以通过 Pipeline 管道来完成模板的组合
-
-[Pipeline](https://js.langchain.com/docs/modules/model_io/prompts/prompt_templates/prompt_composition) 是一组提示模板，其中的每个模板将格式化，并按最终模板格式进行组合
+可以通过 [Pipeline](https://js.langchain.com/docs/modules/model_io/prompts/prompt_templates/prompt_composition) 来实现组合，它是一组提示模板，其中的每个模板将格式化，并按最终模板格式进行组合
 
 <Val id="webup.promptSampleTemplatesPipeline" />
 
@@ -259,11 +275,15 @@ level: 2
 
 # Document Transforms 的文本切分
 
-受限于大语言模型的文本处理量，对于特别长的文本有必要将其分割成块，并尽量将语义相关的片段保留在一起
-
 文本切分的主要方式大体包括 “[按字符](https://js.langchain.com/docs/modules/data_connection/document_transformers/text_splitters/recursive_text_splitter)”、“[按 Token](https://js.langchain.com/docs/modules/data_connection/document_transformers/text_splitters/token)”、“[按代码](https://js.langchain.com/docs/modules/data_connection/document_transformers/text_splitters/code_splitter)”；在如下示例中，我们主要演示前两种切分方式
 
-<Val id="webup.splitterSampleCharToken" />
+<Val id="webup.splitterSampleCharToken" height="90%" />
+
+---
+layout: iframe
+url: http://player.bilibili.com/player.html?aid=489796063&bvid=BV1mN411z7EZ&cid=1234039938
+hideInToc: true
+---
 
 ---
 level: 2
@@ -283,11 +303,9 @@ level: 2
 
 # 向量存储的相似度搜索
 
-在如下示例中，我们分别展示 [内存](https://js.langchain.com/docs/modules/data_connection/vectorstores/integrations/memory) 和 [Pinecone 云服务](https://js.langchain.com/docs/modules/data_connection/vectorstores/integrations/pinecone) 两种向量存储的使用（写入和搜索）
+在如下示例中，我们展示 [Pinecone 云服务](https://js.langchain.com/docs/modules/data_connection/vectorstores/integrations/pinecone) 向量存储的使用（写入和搜索）
 
-<Val id="webup.vectorStoreSampleMemory" height="40%" /><br/>
-
-<Val id="webup.vectorStoreSamplePinecone" height="40%" />
+<Val id="webup.vectorStoreSamplePinecone" />
 
 ---
 level: 2
@@ -378,11 +396,17 @@ Memory 不仅可以整存整取，还可以利用大语言模型加工并返回�
 
 - 通过 LLM 模型对记录内容进行总结
 
-<Val id="webup.memorySampleSummary" height="40%" />
+<Val id="webup.memorySampleSummary" />
 
-- 通过 Vector Store 对记录内容进行相似度匹配后返回
+---
+level: 2
+---
 
-<Val id="webup.memorySampleVector" height="40%" />
+# Memory 的多样化存取方式：Vector Store
+
+通过 Vector Store 也可以对记录内容进行相似度匹配后返回
+
+<Val id="webup.memorySampleVector" />
 
 ---
 src: ../../pages/common/refs.md
