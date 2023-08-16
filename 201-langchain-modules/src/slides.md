@@ -70,7 +70,7 @@ hideInToc: true
 
 ---
 layout: iframe
-url: http://player.bilibili.com/player.html?aid=786400485&bvid=BV1214y1X7Aq&cid=1211541734
+url: //player.bilibili.com/player.html?aid=786400485&bvid=BV1214y1X7Aq&cid=1211541734
 hideInToc: true
 ---
 
@@ -281,7 +281,7 @@ level: 2
 
 ---
 layout: iframe
-url: http://player.bilibili.com/player.html?aid=489796063&bvid=BV1mN411z7EZ&cid=1234039938
+url: //player.bilibili.com/player.html?aid=489796063&bvid=BV1mN411z7EZ&cid=1234039938
 hideInToc: true
 ---
 
