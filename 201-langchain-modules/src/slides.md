@@ -325,6 +325,14 @@ level: 2
 level: 2
 ---
 
+# 🌰 Self-Query Retriever
+
+<Val id="webup.retrieverSampleSelfQuery" height="90%" />
+
+---
+level: 2
+---
+
 # Retrievers 从各个文档源检索（续）
 
 检索的一项挑战是，通常不知道将数据引入系统时，文档存储系统将面临哪些特定查询
