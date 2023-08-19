@@ -230,7 +230,7 @@ level: 2
 level: 2
 ---
 
-# Expression Language <Version>0.0.121</Version>: LLM Chain
+# Runnable Chain <Version>0.0.121</Version>: LLM Chain
 
 现在可以用管道直接把 Prompt ➡️ Model ➡️ Output Parser 串联起来
 
@@ -295,7 +295,7 @@ level: 2
 
 [向量存储](https://js.langchain.com/docs/modules/data_connection/vectorstores/) 负责存储嵌入式数据并为您执行向搜索 —— 查询“最相似”的嵌入向量；向量由 [Embeddings](https://js.langchain.com/docs/modules/data_connection/text_embedding/) 模型生成
 
-<Val id="webup.getVectorStoreBuilder" />
+![](https://python.langchain.com/assets/images/vector_stores-9dc1ecb68c4cb446df110764c9cc07e0.jpg)
 
 ---
 level: 2
@@ -303,7 +303,7 @@ level: 2
 
 # 向量存储的相似度搜索
 
-在如下示例中，我们展示 [Pinecone 云服务](https://js.langchain.com/docs/modules/data_connection/vectorstores/integrations/pinecone) 向量存储的使用（写入和搜索）
+在如下示例中，我们展示 [Pinecone 云服务](https://js.langchain.com/docs/modules/data_connection/vectorstores/integrations/pinecone) 向量存储的搜索（数据写入部分参考 [工具函数](https://www.val.town/v/webup.getVectorStoreBuilder)）
 
 <Val id="webup.vectorStoreSamplePinecone" />
 
@@ -347,7 +347,7 @@ level: 2
 level: 2
 ---
 
-# Expression Language <Version>0.0.121</Version>: LLM Chain + Retriever
+# Runnable Chain <Version>0.0.121</Version>: LLM Chain + Retriever
 
 可以用管道直接把 Prompt ➡️ Model ➡️ Output Parser ➡️ Retriever 串联起来
 
@@ -357,7 +357,7 @@ level: 2
 level: 2
 ---
 
-# Expression Language <Version>0.0.121</Version>: LLM Chain + Retriever
+# Runnable Chain <Version>0.0.121</Version>: LLM Chain + Retriever
 
 在上个示例中，我们将字符串输入直接传递到链路中；如希望链路接受多个输入，可以传递函数映射来解析输入
 
@@ -367,7 +367,7 @@ level: 2
 level: 2
 ---
 
-# Expression Language <Version>0.0.121</Version>: LLM Chain + Retriever
+# Runnable Chain <Version>0.0.121</Version>: LLM Chain + Retriever
 
 在上个示例中，我们使链路接受了多个输入；我们还可以通过格式化函数添加对话历史记录
 
@@ -389,9 +389,18 @@ level: 2
 
 Memory 负责在用户与大语言模型的交互过程中保留状态
 
+![](https://python.langchain.com/assets/images/memory_diagram-0627c68230aa438f9b5419064d63cbbc.png)
+
+---
+level: 2
+---
+
+# Memory 对话状态存储
+
 - [Memory](https://js.langchain.com/docs/modules/memory/) 的作用可以归结为从一系列聊天消息中摄取、捕获、转换和提取知识
 - Memory 可以返回多条信息（例如最近的 N 条消息和摘要）或者所有以前的消息
 
+<br />
 <Val id="webup.getMemoryBuilder" height="70%" />
 
 ---
