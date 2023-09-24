@@ -3,6 +3,7 @@
     { "source": "/101-prompt-engineering/(.*)", "destination": "/101-prompt-engineering/index.html" },
     { "source": "/102-openai-api/(.*)", "destination": "/102-openai-api/index.html" },
     { "source": "/201-langchain-modules/(.*)", "destination": "/201-langchain-modules/index.html" },
+    { "source": "/202-langchain-chains/(.*)", "destination": "/202-langchain-chains/index.html" },
     { "source": "/(.*)", "destination": "/101-prompt-engineering/index.html" }
   ]
 }

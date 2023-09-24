@@ -1,0 +1,17 @@
+{
+  "private": true,
+  "scripts": {
+    "dev": "slidev",
+    "build": "slidev build --base /202-langchain-chains/ --out ../../dist/202-langchain-chains",
+    "export": "slidev export --dark --timeout 0 --output ../../pdfs/202-langchain-chains.pdf"
+  },
+  "devDependencies": {
+    "@slidev/cli": "^0.43.5",
+    "@slidev/theme-seriph": "^0.21.3"
+  },
+  "slidev": {
+    "addons": [
+      "../../addons/webup"
+    ]
+  }
+}

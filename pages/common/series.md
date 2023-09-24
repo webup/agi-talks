@@ -14,5 +14,5 @@ hideInToc: true
 ###### LangChain in Action
 
 - [201：LangChain 功能模块解析（上篇）](https://agi-talks.vercel.app/201-langchain-modules/)
-- 202：LangChain 功能模块解析（下篇）
+- [202：LangChain 功能模块解析（中篇）](https://agi-talks.vercel.app/202-langchain-chains/)
 - 203：LangChain ChatBot 示例

@@ -7,12 +7,12 @@
     "serve:vercel": "vercel dev"
   },
   "devDependencies": {
-    "@iconify-json/ant-design": "^1.1.6",
-    "@iconify-json/mdi": "^1.1.53",
-    "netlify-cli": "^15.9.1",
+    "@iconify-json/ant-design": "^1.1.10",
+    "@iconify-json/mdi": "^1.1.54",
+    "netlify-cli": "^16.4.1",
     "playwright-chromium": "^1.35.0",
-    "pnpm": "^8.6.9",
+    "pnpm": "^8.7.6",
     "rimraf": "^5.0.1",
-    "vercel": "^31.0.4"
+    "vercel": "^32.2.5"
   }
 }
