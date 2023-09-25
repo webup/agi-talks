@@ -98,8 +98,8 @@ level: 2
 <p><B>Runnable 对象的定义</B>：支持以下三个实例方法的对象</p>
 
 - `invoke`：对输入直接进行链式调用 
-- `batch`：对输入列表进行批量的调用链
-- `stream`：（流式）分块返回响应
+- `batch`：对输入列表进行批量的链式调用
+- `stream`：（流式）分块返回响应（需要 Model、Parser 等支持）
 
 <br/>
 
@@ -135,7 +135,7 @@ const outputParser = new StringOutputParser();
 // const chain = promptTemplate.pipe(model).pipe(outputParser);
 const chain = RunnableSequence.from([promptTemplate, model, outputParser]);
 
-/* 调用 Runnable Chain */
+/* 调用 Runnable Sequence */
 const result = await chain.invoke({ topic: "bears" });
 // const result = await chain.batch([{ topic: "bears" }, { topic: "dears" }]);
 ```
@@ -191,7 +191,7 @@ const chain = prompt.pipe(
   })
 );
 
-/* 调用 Runnable Chain */
+/* 调用 Runnable Sequence */
 const result = await chain.invoke({ subject: "bears" });
 ```
 
@@ -236,7 +236,7 @@ const combinedChain = RunnableSequence.from([
   new StringOutputParser(),
 ]);
 
-const result = await combinedChain.invoke({ person: "Obama", language: "German" });
+const result = await combinedChain.invoke({ person: "Chairman Mao", language: "Chinese" });
 ```
 
 ---
@@ -250,7 +250,7 @@ level: 2
 
 # Runnable Passthrough
 
-当我们要从一个长长的 Runnable Chain 中提取最头部的输入时，可以使用 Passthrough 透传机制
+当我们要从一个长长的 Runnable Sequence 中提取最头部的输入时，可以使用 Passthrough 透传机制
 
 ```ts {11-17|24,27-33|all} {maxHeight:'80%'}
 import { ChatOpenAI } from "langchain/chat_models/openai";
@@ -305,7 +305,7 @@ level: 2
 
 # Tool 也是一种 Runnable 对象
 
-因此 Tool 是可以在 Runnable Chain 中被串联的
+因此 Tool 是可以在 Runnable Sequence 中被串联的
 
 ```ts {12-16|all}
 import { SerpAPI } from "langchain/tools";
@@ -339,7 +339,7 @@ level: 2
 
 # 在 Runnable Sequence 中引入 Memory
 
-Memory 可以被添加到任何 Runnable Chain 中，本质和就是生成上下文文本填充到提示词中
+Memory 可以被添加到任何 Runnable Sequence 中，本质和就是生成上下文文本填充到提示词中
 
 ```ts {13-19|22-31|39-40|all} {maxHeight:'80%'}
 import { ChatPromptTemplate, MessagesPlaceholder } from "langchain/prompts";
@@ -454,7 +454,7 @@ const fullChain = RunnableSequence.from([
     topic: classificationChain,
     question: (input: { question: string }) => input.question,
   },
-  /* 可以直接将路由串联进一个 Runnable Chain 中 */
+  /* 可以直接将路由串联进一个 Runnable Sequence 中 */
   branch,
 ]);
 ```
@@ -467,7 +467,7 @@ level: 2
 
 Fallback 机制可以提供优雅的异常处理，通过“以优充次”的方式尽可能保障链路执行继续执行
 
-在 JS/TS 中，可使用 `runnable.withFallbacks({ fallbacks: [runnable] })` 的方式来构建 Fallback 支撑
+在 JS/TS 中，可使用 `runnable.withFallbacks({ fallbacks: [runnable] })` 来构建 Fallback 支撑
 
 ```ts
 const fakeOpenAIModel = new ChatOpenAI({
