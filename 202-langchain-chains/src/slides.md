@@ -64,7 +64,7 @@ hideInToc: true
 
 # 教程大纲
 
-<Toc maxDepth="2" listClass="!list-disc"/>
+<Toc maxDepth="2" listClass="!list-disc" columns="2" />
 
 ---
 layout: iframe
@@ -80,7 +80,6 @@ hideInToc: true
 
 ---
 layout: quote
-level: 1
 ---
 
 # Runnable Sequence
@@ -409,7 +408,7 @@ level: 2
 
 路由允许您创建非确定性的 Chain，其中上一步的输出定义了下一步的路由方向
 
-在 JS/TS 中可使用 `RunnableBranch` 来构建条件路由，路由会依次匹配条件直至选择默认 Runnable 返回：
+在 JS/TS 中可使用 [`RunnableBranch`](https://js.langchain.com/docs/expression_language/how_to/routing) 来构建条件路由，路由会依次匹配条件直至选择默认 Runnable 返回：
 
 ```ts {23-36|43-44|all} {maxHeight:'75%'}
 const langChainChain = PromptTemplate.fromTemplate(
@@ -465,7 +464,7 @@ level: 2
 
 # Runnable 的 Fallback 机制
 
-Fallback 机制可以提供优雅的异常处理，通过“以优充次”的方式尽可能保障链路执行继续执行
+[Fallback](https://js.langchain.com/docs/guides/fallbacks) 机制可以提供优雅的异常处理，通过“以优充次”的方式尽可能保障链路执行继续执行
 
 在 JS/TS 中，可使用 `runnable.withFallbacks({ fallbacks: [runnable] })` 来构建 Fallback 支撑
 
@@ -490,6 +489,558 @@ const chain = badChain.withFallbacks({
   fallbacks: [goodChain],
 });
 ```
+
+---
+layout: quote
+---
+
+# Chains
+
+LangChain 为“链式”应用提供了 Chain 接口
+
+---
+level: 2
+---
+
+# 链路调试的“文韬武略”
+
+除了接入强力的 LangSmith，也可以使用 Console 输出调试信息
+
+和调试 Runnable Sequence 一样，首选的调试方式肯定还是接入 LangSmith，有两种方式：
+
+```sh
+export LANGCHAIN_TRACING_V2=true
+export LANGCHAIN_ENDPOINT=https://api.smith.langchain.com
+export LANGCHAIN_API_KEY=<your-api-key>  # still in closed beta
+export LANGCHAIN_PROJECT=<your-project>  # if not specified, defaults to "default"
+```
+```ts {4-}
+import { Client } from "langsmith";
+import { LangChainTracer } from "langchain/callbacks";
+
+const client = new Client({ apiUrl: "https://api.smith.langchain.com", apiKey: "YOUR_API_KEY" });
+const tracer = new LangChainTracer({ projectName: "YOUR_PROJECT_NAME", client });
+
+await model.invoke("Hello, world!", { callbacks: [tracer] })
+```
+
+退而求其次，可以开启 `verbose` 选项，有两种方式：
+
+```sh
+export LANGCHAIN_VERBOSE=true
+```
+```ts
+const chain = new ConversationChain({ llm: chat, verbose: true });
+```
+
+---
+level: 2
+---
+
+# 一条链路贯天地
+
+类似 Runnable Sequence 的链路构建，但相比之下 [Seqential](https://js.langchain.com/docs/modules/chains/foundational/sequential_chains) 操作的复杂度更加高
+
+- `SimpleSequentialChain`：最简单形式，每个步骤都有单个输入/输出，一个步骤的输出是下一个的输入
+- `SequentialChain`：顺序链的更通用形式，允许多个输入/输出
+
+```ts {12-13,21-22|24-|all} {maxHeight:'70%'}
+import { SequentialChain, LLMChain } from "langchain/chains";
+import { OpenAI } from "langchain/llms/openai";
+import { PromptTemplate } from "langchain/prompts";
+
+// This is an LLMChain to write a synopsis given a title of a play and the era it is set in.
+const llm = new OpenAI({ temperature: 0 });
+const template = `You are a playwright. Given the title of play and the era it is set in, it is your job to write a synopsis for that title.
+
+  Title: {title}
+  Era: {era}
+  Playwright: This is a synopsis for the above play:`;
+const promptTemplate = new PromptTemplate({template, inputVariables: ["title", "era"] });
+const synopsisChain = new LLMChain({ llm, prompt: promptTemplate, outputKey: "synopsis" });
+
+// This is an LLMChain to write a review of a play given a synopsis.
+const reviewTemplate = `You are a play critic from the New York Times. Given the synopsis of play, it is your job to write a review for that play.
+  
+  Play Synopsis:
+  {synopsis}
+  Review from a New York Times play critic of the above play:`;
+const reviewPromptTemplate = new PromptTemplate({ template: reviewTemplate, inputVariables: ["synopsis"] });
+const reviewChain = new LLMChain({ llm, prompt: reviewPromptTemplate, outputKey: "review" });
+
+const overallChain = new SequentialChain({
+  chains: [synopsisChain, reviewChain],     // 串联两个 LLMChain
+  inputVariables: ["era", "title"],         // 定义需要传入的变量
+  outputVariables: ["synopsis", "review"],  // 定义需要输出的变量
+});
+const chainExecutionResult = await overallChain.call({ title: "Tragedy at sunset on the beach", era: "Victorian England" });
+```
+
+---
+layout: iframe
+url: https://smith.langchain.com/public/63376249-1360-4cea-9886-da72b3abbfd4/r
+---
+
+---
+level: 2
+---
+
+# 两类模型舞前沿
+
+最基础的链式调用是 [`LLMChain`](https://js.langchain.com/docs/modules/chains/foundational/llm_chain)，它同时支持 LLM 和 Chat 模型
+
+```ts
+/* 构建基于 LLM 模型的 LLMChain */
+const model = new OpenAI({ temperature: 0 });
+const prompt = PromptTemplate.fromTemplate("What is a good name for a company that makes {product}?");
+const chainA = new LLMChain({ llm: model, prompt });
+
+// 通过 .call(object) 返回输出对象
+const resA = await chainA.call({ product: "colorful socks" });  // { text: '\n\nSocktastic!' }
+// 通过 .run(string) 返回输出字符串
+const resA2 = await chainA.run("colorful socks");   // '\n\nSocktastic!'
+```
+<br/>
+
+```ts
+/* 构建基于 Chat 模型的 LLMChain */
+const chat = new ChatOpenAI({ temperature: 0 });
+const chatPrompt = ChatPromptTemplate.fromMessages([
+  ["system", "You are a helpful assistant that translates {input_language} to {output_language}."],
+  ["human", "{text}"],
+]);
+const chainB = new LLMChain({ prompt: chatPrompt, llm: chat });
+
+const resB = await chainB.call({ input_language: "English", output_language: "French", text: "I love programming." });
+// { text: "J'adore la programmation." }
+```
+
+---
+level: 2
+---
+
+# 三种巧思治文档
+
+LangChain 提供处理文档的工具链，它们对于总结文档、回答文档问题、从文档中提取信息等很有用
+
+[三种文档处理工具链](https://js.langchain.com/docs/modules/chains/document/) 的使用方式基本是一样的，如下所示：
+
+```ts {10-}
+import { OpenAI } from "langchain/llms/openai";
+import { loadQAStuffChain, loadQAMapReduceChain } from "langchain/chains";
+import { Document } from "langchain/document";
+
+const docs = [
+  new Document({ pageContent: "Harrison went to Harvard." }),
+  new Document({ pageContent: "Ankush went to Princeton." }),
+];
+
+/* 构建并使用 StuffDocumentsChain */
+const llmA = new OpenAI({});
+const chainA = loadQAStuffChain(llmA);
+const resA = await chainA.call({ input_documents: docs, question: "Where did Harrison go to college?" });
+
+/* 构建并使用 MapReduceChain */
+const llmB = new OpenAI({ maxConcurrency: 10 });
+const chainB = loadQAMapReduceChain(llmB);
+const resB = await chainB.call({ input_documents: docs, question: "Where did Harrison go to college?" });
+```
+
+---
+level: 3
+---
+
+<img src="https://js.langchain.com/assets/images/stuff-818da4c66ee17911bc8861c089316579.jpg" width="400" />
+<img src="https://js.langchain.com/assets/images/map_reduce-c65525a871b62f5cacef431625c4d133.jpg" width="800" />
+
+---
+level: 3
+---
+
+# 层叠递进的 Refine 模式
+
+- <B>对于每个文档，它将所有非文档输入、当前文档以及最新的中间答案传递给 LLM 链以获得新的答案</B>
+- 由于 Refine 链一次仅将单个文档传递给 LLM，因此很适合需要分析的文档数量多于模型上下文的任务
+- 明显的缺点是：将比 Stuff 文档链进行更多的 LLM 调用；当文档频繁地互相交叉引用时很可能表现不佳
+
+![](https://js.langchain.com/assets/images/refine-a70f30dd7ada6fe5e3fcc40dd70de037.jpg)
+
+---
+level: 3
+---
+
+# 🌰 Refine 文档链的二阶段提示词应用
+
+```ts {8-18|20-34|36-39|all} {maxHeight:'90%'}
+import { loadQARefineChain } from "langchain/chains";
+import { OpenAI } from "langchain/llms/openai";
+import { TextLoader } from "langchain/document_loaders/fs/text";
+import { MemoryVectorStore } from "langchain/vectorstores/memory";
+import { OpenAIEmbeddings } from "langchain/embeddings/openai";
+import { PromptTemplate } from "langchain/prompts";
+
+/* 最终提问时使用的提示词 */
+export const questionPromptTemplateString = `Context information is below.
+---------------------
+{context}
+---------------------
+Given the context information and no prior knowledge, answer the question: {question}`;
+
+const questionPrompt = new PromptTemplate({
+  inputVariables: ["context", "question"],
+  template: questionPromptTemplateString,
+});
+
+/* 中间 Refine 过程使用的提示词 */
+const refinePromptTemplateString = `The original question is as follows: {question}
+We have provided an existing answer: {existing_answer}
+We have the opportunity to refine the existing answer
+(only if needed) with some more context below.
+------------
+{context}
+------------
+Given the new context, refine the original answer to better answer the question.
+You must provide a response, either original answer or refined answer.`;
+
+const refinePrompt = new PromptTemplate({
+  inputVariables: ["question", "existing_answer", "context"],
+  template: refinePromptTemplateString,
+});
+
+/* 构建 Refine 文档链，并导入两份提示词模板 */
+const embeddings = new OpenAIEmbeddings();
+const model = new OpenAI({ temperature: 0 });
+const chain = loadQARefineChain(model, { questionPrompt, refinePrompt });
+
+// Load the documents and create the vector store
+const loader = new TextLoader("./state_of_the_union.txt");
+const docs = await loader.loadAndSplit();
+const store = await MemoryVectorStore.fromDocuments(docs, embeddings);
+
+// Select the relevant documents
+const question = "What did the president say about Justice Breyer";
+const relevantDocs = await store.similaritySearch(question);
+
+const res = await chain.call({ input_documents: relevantDocs, question });
+```
+
+---
+level: 2
+---
+
+# 四套应用展威力：Retrieval QA
+
+[Retrival QA Chain](https://js.langchain.com/docs/modules/chains/popular/vector_db_qa) 通过从检索器检索文档，然后使用文档工具链，根据检索到的文档回答问题
+
+```ts {18-22|24-|all} {maxHeight:'85%'}
+import { OpenAI } from "langchain/llms/openai";
+import { RetrievalQAChain, loadQAStuffChain } from "langchain/chains";
+import { HNSWLib } from "langchain/vectorstores/hnswlib";
+import { OpenAIEmbeddings } from "langchain/embeddings/openai";
+import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
+import { PromptTemplate } from "langchain/prompts";
+import * as fs from "fs";
+
+const promptTemplate = `Use the following pieces of context to answer the question at the end. If you don't know the answer, just say that you don't know, don't try to make up an answer.
+
+{context}
+
+Question: {question}
+Answer in Italian:`;
+const prompt = PromptTemplate.fromTemplate(promptTemplate);
+const model = new OpenAI({});
+
+/* 构建文档检索器 */
+const text = fs.readFileSync("state_of_the_union.txt", "utf8");
+const textSplitter = new RecursiveCharacterTextSplitter({ chunkSize: 1000 });
+const docs = await textSplitter.createDocuments([text]);
+const vectorStore = await HNSWLib.fromDocuments(docs, new OpenAIEmbeddings());
+
+/* 构建基于 Stuff 文档链和自定义提示词的 Retrieval QA Chain */
+const chain = new RetrievalQAChain({
+  combineDocumentsChain: loadQAStuffChain(model, { prompt }),
+  retriever: vectorStore.asRetriever(),
+  returnSourceDocuments: true,  // 要求一并返回原始文档
+});
+const res = await chain.call({ query: "What did the president say about Justice Breyer?" });
+```
+
+---
+level: 2
+---
+
+# 四套应用展威力：Converational Retrieval QA
+
+[Conversational Retrieval QA Chain](https://js.langchain.com/docs/modules/chains/popular/chat_vector_db) 建立在 Retrieval QA Chain 的基础上，并接入 Memory 组件
+
+它首先将聊天历史记录和问题组合成一个独立的问题，然后将检索得到的文档和问题传递给问答链以返回响应
+
+```ts {35-49|51-|all} {maxHeight:'75%'}
+import { ChatOpenAI } from "langchain/chat_models/openai";
+import { ConversationalRetrievalQAChain } from "langchain/chains";
+import { HNSWLib } from "langchain/vectorstores/hnswlib";
+import { OpenAIEmbeddings } from "langchain/embeddings/openai";
+import { BufferMemory } from "langchain/memory";
+
+const CUSTOM_QUESTION_GENERATOR_CHAIN_PROMPT = `Given the following conversation and a follow up question, return the conversation history excerpt that includes any relevant context to the question if it exists and rephrase the follow up question to be a standalone question.
+Chat History:
+{chat_history}
+Follow Up Input: {question}
+Your answer should follow the following format:
+\`\`\`
+Use the following pieces of context to answer the users question.
+If you don't know the answer, just say that you don't know, don't try to make up an answer.
+----------------
+<Relevant chat history excerpt as context here>
+Standalone question: <Rephrased question here>
+\`\`\`
+Your answer:`;
+
+const model = new ChatOpenAI({ temperature: 0 });
+
+const vectorStore = await HNSWLib.fromTexts(
+  [
+    "Mitochondria are the powerhouse of the cell",
+    "Foo is red",
+    "Bar is red",
+    "Buildings are made out of brick",
+    "Mitochondria are made of lipids",
+  ],
+  [{ id: 2 }, { id: 1 }, { id: 3 }, { id: 4 }, { id: 5 }],
+  new OpenAIEmbeddings()
+);
+
+/* 构建 Conversational Retrieval QA Chain */
+const chain = ConversationalRetrievalQAChain.fromLLM(
+  model,
+  vectorStore.asRetriever(),
+  /* 导入 Memory 和自定义提示词模板 */
+  {
+    memory: new BufferMemory({
+      memoryKey: "chat_history",
+      returnMessages: true,
+    }),
+    questionGeneratorChainOptions: {
+      template: CUSTOM_QUESTION_GENERATOR_CHAIN_PROMPT,
+    },
+  }
+);
+
+const res1 = await chain.call({ question: "I have a friend called Bob. He's 28 years old. He'd like to know what the powerhouse of the cell is?" });
+// { text: "The powerhouse of the cell is the mitochondria." }
+
+const res2 = await chain.call({ question: "How old is Bob?" });
+// { text: "Bob is 28 years old." }
+```
+
+---
+layout: iframe
+url: https://smith.langchain.com/public/517b2110-349f-4089-8051-9b5203e34c0b/r
+---
+
+---
+layout: iframe
+url: https://smith.langchain.com/public/69a66e55-e00d-4aae-9953-8e42f4feaeea/r
+---
+
+---
+level: 2
+---
+
+# 四套应用展威力：SQL QA
+
+利用 LLM 的 SQL 生成能力，可以构建 [SQL Chain](https://js.langchain.com/docs/modules/chains/popular/sqlite) 来进行面向数据库的问答
+
+```ts {24-26|28-36|all} {maxHeight:'80%'}
+import { DataSource } from "typeorm";
+import { OpenAI } from "langchain/llms/openai";
+import { SqlDatabase } from "langchain/sql_db";
+import { SqlDatabaseChain } from "langchain/chains/sql_db";
+import { PromptTemplate } from "langchain/prompts";
+
+const template = `Given an input question, first create a syntactically correct {dialect} query to run, then look at the results of the query and return the answer.
+Use the following format:
+
+Question: "Question here"
+SQLQuery: "SQL Query to run"
+SQLResult: "Result of the SQLQuery"
+Answer: "Final answer here"
+
+Only use the following tables:
+
+{table_info}
+
+If someone asks for the table foobar, they really mean the employee table.
+
+Question: {input}`;
+const prompt = PromptTemplate.fromTemplate(template);
+
+/* 构建数据库连接 */
+const appDataSource = new DataSource({ type: "sqlite", database: "data/Chinook.db" });
+const db = await SqlDatabase.fromDataSourceParams({ appDataSource });
+
+/* 构建并执行 SQL QA Chain */
+const chain = new SqlDatabaseChain({
+  llm: new OpenAI({ temperature: 0 }),
+  database: db,
+  sqlOutputKey: "sql",  // 要求返回 SQL 语句
+  prompt,               // 使用自定义提示词
+});
+await chain.call({ query: "How many employees are there in the foobar table?" });
+/*
+  {
+    result: ' There are 8 employees in the foobar table.',
+    sql: ' SELECT COUNT(*) FROM Employee;'
+  }
+*/
+```
+
+---
+layout: iframe
+url: https://smith.langchain.com/public/89aaa750-4115-4ad0-a987-39ea0b2e52f4/r
+---
+
+---
+level: 3
+---
+
+# 用 Runnable Sequence 实现 SQL QA
+
+```ts {38-51} {maxHeight:'90%'}
+import { DataSource } from "typeorm";
+import { SqlDatabase } from "langchain/sql_db";
+import { RunnableSequence } from "langchain/schema/runnable";
+import { PromptTemplate } from "langchain/prompts";
+import { StringOutputParser } from "langchain/schema/output_parser";
+import { ChatOpenAI } from "langchain/chat_models/openai";
+
+const datasource = new DataSource({ type: "sqlite", database: "Chinook.db" });
+const db = await SqlDatabase.fromDataSourceParams({ appDataSource: datasource });
+
+const prompt =
+  PromptTemplate.fromTemplate(`Based on the table schema below, write a SQL query that would answer the user's question:
+{schema}
+
+Question: {question}
+SQL Query:`);
+
+const model = new ChatOpenAI();
+
+const sqlQueryGeneratorChain = RunnableSequence.from([
+  {
+    schema: async () => db.getTableInfo(),
+    question: (input: { question: string }) => input.question,
+  },
+  prompt,
+  model.bind({ stop: ["\nSQLResult:"] }),
+  new StringOutputParser(),
+]);
+
+const finalResponsePrompt =
+  PromptTemplate.fromTemplate(`Based on the table schema below, question, sql query, and sql response, write a natural language response:
+{schema}
+
+Question: {question}
+SQL Query: {query}
+SQL Response: {response}`);
+
+const fullChain = RunnableSequence.from([
+  {
+    question: (input) => input.question,
+    query: sqlQueryGeneratorChain,
+  },
+  {
+    schema: async () => db.getTableInfo(),
+    question: (input) => input.question,
+    query: (input) => input.query,
+    response: (input) => db.run(input.query),
+  },
+  finalResponsePrompt,
+  model,
+]);
+
+const finalResponse = await fullChain.invoke({ question: "How many employees are there?" });
+```
+
+---
+layout: iframe
+url: https://smith.langchain.com/public/6d79dcfb-e501-45f5-ad31-0d605233627b/r
+---
+
+---
+level: 2
+---
+
+# 四套应用展威力：Web API
+
+[API Chain](https://js.langchain.com/docs/modules/chains/popular/api) 允许使用 LLM 与 API 交互以检索相关信息，通过提供与提供的 API 文档相关的问题来构建链
+
+```ts {34-} {maxHeight:'90%'}
+import { OpenAI } from "langchain/llms/openai";
+import { APIChain } from "langchain/chains";
+
+const OPEN_METEO_DOCS = `BASE URL: https://api.open-meteo.com/
+
+API Documentation
+The API endpoint /v1/forecast accepts a geographical coordinate, a list of weather variables and responds with a JSON hourly weather forecast for 7 days. Time always starts at 0:00 today and contains 168 hours. All URL parameters are listed below:
+
+Parameter	Format	Required	Default	Description
+latitude, longitude	Floating point	Yes		Geographical WGS84 coordinate of the location
+hourly	String array	No		A list of weather variables which should be returned. Values can be comma separated, or multiple &hourly= parameter in the URL can be used.
+daily	String array	No		A list of daily weather variable aggregations which should be returned. Values can be comma separated, or multiple &daily= parameter in the URL can be used. If daily weather variables are specified, parameter timezone is required.
+current_weather	Bool	No	false	Include current weather conditions in the JSON output.
+temperature_unit	String	No	celsius	If fahrenheit is set, all temperature values are converted to Fahrenheit.
+windspeed_unit	String	No	kmh	Other wind speed speed units: ms, mph and kn
+precipitation_unit	String	No	mm	Other precipitation amount units: inch
+timeformat	String	No	iso8601	If format unixtime is selected, all time values are returned in UNIX epoch time in seconds. Please note that all timestamp are in GMT+0! For daily values with unix timestamps, please apply utc_offset_seconds again to get the correct date.
+timezone	String	No	GMT	If timezone is set, all timestamps are returned as local-time and data is returned starting at 00:00 local-time. Any time zone name from the time zone database is supported. If auto is set as a time zone, the coordinates will be automatically resolved to the local time zone.
+past_days	Integer (0-2)	No	0	If past_days is set, yesterday or the day before yesterday data are also returned.
+start_date
+end_date	String (yyyy-mm-dd)	No		The time interval to get weather data. A day must be specified as an ISO8601 date (e.g. 2022-06-30).
+models	String array	No	auto	Manually select one or more weather models. Per default, the best suitable weather models will be combined.
+
+Variable	Valid time	Unit	Description
+temperature_2m	Instant	°C (°F)	Air temperature at 2 meters above ground
+snowfall	Preceding hour sum	cm (inch)	Snowfall amount of the preceding hour in centimeters. For the water equivalent in millimeter, divide by 7. E.g. 7 cm snow = 10 mm precipitation water equivalent
+rain	Preceding hour sum	mm (inch)	Rain from large scale weather systems of the preceding hour in millimeter
+showers	Preceding hour sum	mm (inch)	Showers from convective precipitation in millimeters from the preceding hour
+weathercode	Instant	WMO code	Weather condition as a numeric code. Follow WMO weather interpretation codes. See table below for details.
+snow_depth	Instant	meters	Snow depth on the ground
+freezinglevel_height	Instant	meters	Altitude above sea level of the 0°C level
+visibility	Instant	meters	Viewing distance in meters. Influenced by low clouds, humidity and aerosols. Maximum visibility is approximately 24 km.`;
+
+const model = new OpenAI({ modelName: "text-davinci-003" });
+const chain = APIChain.fromLLMAndAPIDocs(model, OPEN_METEO_DOCS, { headers: {} });
+await chain.call({ question: "What is the weather like right now in Munich, Germany in degrees Farenheit?" });
+```
+
+---
+layout: iframe
+url: https://smith.langchain.com/public/8d7555a1-66bc-4f03-843e-261a4f576f4d/r
+---
+
+---
+level: 2
+---
+
+# 种类繁多的“预制菜”
+
+相比 Runnable Sequence 的自定义能力强，Chain 的最大特点就是预制化程度高
+
+> 下面以 JS/TS SDK 展示一些有特色的 Chain
+
+<br/>
+
+- 基于 [OpenAI Functions](https://platform.openai.com/docs/guides/gpt/function-calling) 能力底座的 Chain：
+  - [`createExtractionChainFromZod`](https://js.langchain.com/docs/modules/chains/additional/openai_functions/extraction)：从输入文本和所需信息的模式中提取对象列表
+  - [`createTaggingChain`](https://js.langchain.com/docs/modules/chains/additional/openai_functions/tagging)：根据模式中定义的属性来标记输入文本
+  - [`createOpenAPIChain`](https://js.langchain.com/docs/modules/chains/additional/openai_functions/openapi)：基于 Open API 规范自动选择和调用 API
+- [`OpenAIModerationChain`](https://js.langchain.com/docs/modules/chains/additional/moderation)：审核链基于 OpenAI Moderation 对于检测可能仇恨、暴力等的文本很有用
+- [`ConstitutionalChain`](https://js.langchain.com/docs/modules/chains/additional/constitutional_chain)：自我批判链是一条确保语言模型的输出遵守一组预定义准则的链
+
+此外，也提供用于条件路由的 Chain：
+- [`MultiPromptChain`](https://js.langchain.com/docs/modules/chains/additional/multi_prompt_router)：使用多提示链创建一个问答链，选择与给定问题最相关的提示并进行回答
+- [`MultiRetrievalQAChain`](https://js.langchain.com/docs/modules/chains/additional/multi_retrieval_qa_router)：该链选择与给定问题最相关的 Retrieval QA Chain，然后使用它回答问题
 
 ---
 src: ../../pages/common/refs.md
