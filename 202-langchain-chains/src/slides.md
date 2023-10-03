@@ -539,7 +539,7 @@ level: 2
 
 # 一条链路贯天地
 
-类似 Runnable Sequence 的链路构建，但相比之下 [Seqential](https://js.langchain.com/docs/modules/chains/foundational/sequential_chains) 操作的复杂度更加高
+类似 Runnable Sequence 的链路构建，但相比之下 [Sequential](https://js.langchain.com/docs/modules/chains/foundational/sequential_chains) 操作的复杂度更加高
 
 - `SimpleSequentialChain`：最简单形式，每个步骤都有单个输入/输出，一个步骤的输出是下一个的输入
 - `SequentialChain`：顺序链的更通用形式，允许多个输入/输出
@@ -728,9 +728,9 @@ const res = await chain.call({ input_documents: relevantDocs, question });
 level: 2
 ---
 
-# 四套应用展威力：Retrieval QA
+# 四套应用疏通途：Retrieval QA
 
-[Retrival QA Chain](https://js.langchain.com/docs/modules/chains/popular/vector_db_qa) 通过从检索器检索文档，然后使用文档工具链，根据检索到的文档回答问题
+[Retrieval QA Chain](https://js.langchain.com/docs/modules/chains/popular/vector_db_qa) 通过从检索器检索文档，然后使用文档工具链，根据检索到的文档回答问题
 
 ```ts {18-22|24-|all} {maxHeight:'85%'}
 import { OpenAI } from "langchain/llms/openai";
@@ -769,7 +769,7 @@ const res = await chain.call({ query: "What did the president say about Justice 
 level: 2
 ---
 
-# 四套应用展威力：Converational Retrieval QA
+# 四套应用疏通途：Conversational Retrieval QA
 
 [Conversational Retrieval QA Chain](https://js.langchain.com/docs/modules/chains/popular/chat_vector_db) 建立在 Retrieval QA Chain 的基础上，并接入 Memory 组件
 
@@ -847,7 +847,7 @@ url: https://smith.langchain.com/public/69a66e55-e00d-4aae-9953-8e42f4feaeea/r
 level: 2
 ---
 
-# 四套应用展威力：SQL QA
+# 四套应用疏通途：SQL QA
 
 利用 LLM 的 SQL 生成能力，可以构建 [SQL Chain](https://js.langchain.com/docs/modules/chains/popular/sqlite) 来进行面向数据库的问答
 
@@ -971,7 +971,7 @@ url: https://smith.langchain.com/public/6d79dcfb-e501-45f5-ad31-0d605233627b/r
 level: 2
 ---
 
-# 四套应用展威力：Web API
+# 四套应用疏通途：Web API
 
 [API Chain](https://js.langchain.com/docs/modules/chains/popular/api) 允许使用 LLM 与 API 交互以检索相关信息，通过提供与提供的 API 文档相关的问题来构建链
 
