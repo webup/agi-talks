@@ -9,10 +9,10 @@
   "devDependencies": {
     "@iconify-json/ant-design": "^1.1.10",
     "@iconify-json/mdi": "^1.1.54",
-    "netlify-cli": "^16.4.1",
-    "playwright-chromium": "^1.35.0",
-    "pnpm": "^8.7.6",
-    "rimraf": "^5.0.1",
-    "vercel": "^32.2.5"
+    "netlify-cli": "^16.5.1",
+    "playwright-chromium": "^1.38.1",
+    "pnpm": "^8.8.0",
+    "rimraf": "^5.0.5",
+    "vercel": "^32.4.1"
   }
 }
