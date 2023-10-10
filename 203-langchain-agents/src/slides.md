@@ -31,7 +31,7 @@ background: https://source.unsplash.com/collection/94734566/1920x1080
 
 # LangChain 模块解析<sub>（下）</sub>
 
-LangChain Chains Hands-on
+LangChain Agents and Callbacks Hands-on
 
 <div class="pt-12">
   <span @click="$slidev.nav.next" class="px-2 py-1 rounded cursor-pointer" hover="bg-white bg-opacity-10">
