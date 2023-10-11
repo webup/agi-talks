@@ -5,6 +5,7 @@
     { "source": "/201-langchain-modules/(.*)", "destination": "/201-langchain-modules/index.html" },
     { "source": "/202-langchain-chains/(.*)", "destination": "/202-langchain-chains/index.html" },
     { "source": "/203-langchain-agents/(.*)", "destination": "/203-langchain-agents/index.html" },
+    { "source": "/301-langchain-chatdoc/(.*)", "destination": "/301-langchain-chatdoc/index.html" },
     { "source": "/(.*)", "destination": "/101-prompt-engineering/index.html" }
   ]
 }

@@ -1,7 +1,6 @@
 ---
 hideInToc: true
 ---
-
 # 参考资料
 
 本教程在制作过程中参考和引用了以下资料（排名不分先后）的内容，特此鸣谢！
@@ -16,6 +15,7 @@ hideInToc: true
 
 - [Core Concepts | 🦜️🔗 LangChain](https://docs.langchain.com/)
   - [JS/TS Docs](https://js.langchain.com/), [Python Docs](https://python.langchain.com/), [LangSmith Docs](https://docs.smith.langchain.com/)
+  - LangChain [Blog](https://blog.langchain.dev/), [Release Notes](https://blog.langchain.dev/tag/release-notes/)
 - [入门：Prompts（提示词）｜通往 AGI 之路](https://ywh1bkansf.feishu.cn/wiki/Q5mXww4rriujFFkFQOzc8uIsnah?table=tbldSgFt2xNUDNAz&view=vewo2g2ktO)
 
 <br />
