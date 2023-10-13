@@ -223,6 +223,12 @@ indexing_stats = index(
 - 我们使用 [LangChain Indexing API](https://python.langchain.com/docs/modules/data_connection/indexing) 将任何来源的文档加载到向量存储中并保持同步
   - 它使用 `RecordManager` 来跟踪对任何向量存储的写入，并处理来自同一源的文档的重复数据删除和清理
   - 目前的实现中使用了 [Supabase](https://python.langchain.com/docs/integrations/providers/supabase) PostgreSQL 作为后台的 `SQLRecordManager`
+  - 并使用 [GitHub Action](https://github.com/langchain-ai/chat-langchain/blob/master/.github/workflows/update-index.yml#L21-L27) 定时触发，番外参考：[Syncing data sources to vector stores](https://blog.langchain.dev/syncing-data-sources-to-vector-stores/)
+
+---
+layout: image
+image: https://blog.langchain.dev/content/images/size/w1000/2023/09/langchain-overview-5.png
+---
 
 ---
 
