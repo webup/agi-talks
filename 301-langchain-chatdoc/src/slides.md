@@ -122,7 +122,7 @@ layout: two-cols-header
 
 # 1⃣️ 读取 / 加载私域数据
 
-💡 [ingest.py#L81-L84](https://github.com/langchain-ai/chat-langchain/blob/master/ingest.py#L81-L84)｜首先通过抓取相关文档网页来加载为 `Document`
+💡 [ingest.py#L81-L84](https://github.com/langchain-ai/chat-langchain/blob/3de16f8318abce7e88dc1da5444d9fb067a46200/ingest.py#L81-L84)｜首先通过抓取相关文档网页来加载为 `Document`
 
 ::left::
 
@@ -142,7 +142,7 @@ docs = SitemapLoader(
 ```
 
 - 使用 [`SitemapLoader`](https://python.langchain.com/docs/integrations/document_loaders/sitemap) 从站点地图 XML 中抓取所有链接
-  - 很多工作都是由 [langchain_docs_extractor](https://github.com/langchain-ai/chat-langchain/blob/master/parser.py) 方法完成的
+  - 很多工作都是由 [langchain_docs_extractor](https://github.com/langchain-ai/chat-langchain/blob/3de16f8318abce7e88dc1da5444d9fb067a46200/parser.py) 方法完成的
   - 这是一个很棒的自定义 HTML -> 文本解析器
 
 <br/>
@@ -172,7 +172,7 @@ api_ref = RecursiveUrlLoader(
 
 # 2⃣️ 数据预处理及存储
 
-💡 [ingest.py#L86-L114](https://github.com/langchain-ai/chat-langchain/blob/master/ingest.py#L86-L114)｜下面我们把文档切片并向量化后存入 Weaviate 向量存储中
+💡 [ingest.py#L86-L114](https://github.com/langchain-ai/chat-langchain/blob/3de16f8318abce7e88dc1da5444d9fb067a46200/ingest.py#L86-L114)｜下面我们把文档切片并向量化后存入 Weaviate 向量存储中
 
 ```python
 docs_transformed = RecursiveCharacterTextSplitter(chunk_size=4000, chunk_overlap=200).split_documents(docs + api_ref)
@@ -203,7 +203,7 @@ vectorstore = Weaviate(
 
 # 3⃣️ 持续数据索引及存储
 
-💡 [ingest.py#L116-L127](https://github.com/langchain-ai/chat-langchain/blob/master/ingest.py#L116-L127)｜我们通过管理索引记录让我们不必每次都从头开始重新索引所有文档
+💡 [ingest.py#L116-L127](https://github.com/langchain-ai/chat-langchain/blob/3de16f8318abce7e88dc1da5444d9fb067a46200/ingest.py#L116-L127)｜我们通过管理索引记录让我们不必每次都从头开始重新索引所有文档
 
 ```python
 record_manager = SQLRecordManager(
@@ -223,7 +223,7 @@ indexing_stats = index(
 - 我们使用 [LangChain Indexing API](https://python.langchain.com/docs/modules/data_connection/indexing) 将任何来源的文档加载到向量存储中并保持同步
   - 它使用 `RecordManager` 来跟踪对任何向量存储的写入，并处理来自同一源的文档的重复数据删除和清理
   - 目前的实现中使用了 [Supabase](https://python.langchain.com/docs/integrations/providers/supabase) PostgreSQL 作为后台的 `SQLRecordManager`
-  - 并使用 [GitHub Action](https://github.com/langchain-ai/chat-langchain/blob/master/.github/workflows/update-index.yml#L21-L27) 定时触发，番外参考：[Syncing data sources to vector stores](https://blog.langchain.dev/syncing-data-sources-to-vector-stores/)
+  - 并使用 [GitHub Action](https://github.com/langchain-ai/chat-langchain/blob/3de16f8318abce7e88dc1da5444d9fb067a46200/.github/workflows/update-index.yml#L21-L27) 定时触发，番外参考：[Syncing data sources to vector stores](https://blog.langchain.dev/syncing-data-sources-to-vector-stores/)
 
 ---
 layout: image
@@ -234,7 +234,7 @@ image: https://blog.langchain.dev/content/images/size/w1000/2023/09/langchain-ov
 
 # 4⃣️ 基于用户提问的数据检索
 
-💡 [main.py#L107-L127](https://github.com/langchain-ai/chat-langchain/blob/master/main.py#L115-L126)｜准备好用户的提问，构建数据检索的链路
+💡 [main.py#L107-L127](https://github.com/langchain-ai/chat-langchain/blob/3de16f8318abce7e88dc1da5444d9fb067a46200/main.py#L115-L126)｜准备好用户的提问，构建数据检索的链路
 
 ```python
 condense_question_chain = (
@@ -260,7 +260,7 @@ url: https://smith.langchain.com/hub/bagatur/chat-langchain-rephrase?organizatio
 
 # 5⃣️ 基于检索内容的应答生成
 
-💡 [main.py#L138-L164](https://github.com/langchain-ai/chat-langchain/blob/master/main.py#L138-L164)｜最后我们将原始问题、聊天历史记录和检索到的上下文传递给大语言模型继续应答生成
+💡 [main.py#L138-L164](https://github.com/langchain-ai/chat-langchain/blob/3de16f8318abce7e88dc1da5444d9fb067a46200/main.py#L138-L164)｜最后我们将原始问题、聊天历史记录和检索到的上下文传递给大语言模型继续应答生成
 
 ```python {1-7|8-14|16-|all}
 _context = RunnableMap(
@@ -295,7 +295,7 @@ url: https://smith.langchain.com/hub/bagatur/chat-langchain-response
 
 # 🔀 输出增强：流式输出
 
-💡 [main.py#L204-L220](https://github.com/langchain-ai/chat-langchain/blob/master/main.py#L204-L220)｜我们还希望最小化用户首次获得应答文本的时间，或者说 “打字机” 输出效果
+💡 [main.py#L204-L220](https://github.com/langchain-ai/chat-langchain/blob/3de16f8318abce7e88dc1da5444d9fb067a46200/main.py#L204-L220)｜我们还希望最小化用户首次获得应答文本的时间，或者说 “打字机” 输出效果
 
 ```python
 stream = answer_chain.astream_log(
