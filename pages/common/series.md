@@ -20,3 +20,4 @@ hideInToc: true
 <br/>
 
 - [301：LangChain 实战 - Chat LangChain 应用解析](https://agi-talks.vercel.app/301-langchain-chatdoc)
+- [302：LangServe - 部署 LangChain 最佳方式](https://agi-talks.vercel.app/302-langserve)

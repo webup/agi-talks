@@ -37,6 +37,11 @@
   status = 200
 
 [[redirects]]
+  from = "/302-langserve/*"
+  to = "/302-langserve/index.html"
+  status = 200
+
+[[redirects]]
   from = "/"
   to = "https://github.com/webup/agi-talks"
   status = 302

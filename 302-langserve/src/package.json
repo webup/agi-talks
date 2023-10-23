@@ -1,0 +1,17 @@
+{
+  "private": true,
+  "scripts": {
+    "dev": "slidev",
+    "build": "slidev build --base /302-langserve/ --out ../../dist/302-langserve",
+    "export": "slidev export --dark --timeout 0 --output ../../pdfs/302-langserve.pdf"
+  },
+  "devDependencies": {
+    "@slidev/cli": "^0.43.7",
+    "@slidev/theme-seriph": "^0.21.3"
+  },
+  "slidev": {
+    "addons": [
+      "../../addons/webup"
+    ]
+  }
+}

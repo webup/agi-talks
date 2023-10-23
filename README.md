@@ -13,3 +13,4 @@
 - [202：LangChain 功能模块解析（中篇）](https://agi-talks.vercel.app/202-langchain-chains/)
 - [203：LangChain 功能模块解析（下篇）](https://agi-talks.vercel.app/203-langchain-agents/)
 - [301：LangChain 实战 - Chat LangChain 应用解析](https://agi-talks.vercel.app/301-langchain-chatdoc)
+- [302：LangServe - 部署 LangChain 最佳方式](https://agi-talks.vercel.app/302-langserve)

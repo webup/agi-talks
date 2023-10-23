@@ -84,6 +84,15 @@ importers:
         specifier: ^0.21.3
         version: 0.21.3
 
+  302-langserve/src:
+    devDependencies:
+      '@slidev/cli':
+        specifier: ^0.43.7
+        version: 0.43.7(@types/markdown-it@13.0.2)(@types/node@20.8.2)(playwright-chromium@1.38.1)(postcss@8.4.31)
+      '@slidev/theme-seriph':
+        specifier: ^0.21.3
+        version: 0.21.3
+
   addons/webup: {}
 
 packages:
@@ -3201,7 +3210,7 @@ packages:
       resolve: 1.22.6
       resolve-from: 5.0.0
       resolve-global: 1.0.0
-      shiki: /shikiji-compat@0.6.8
+      shiki: /shikiji-compat@0.6.9
       unocss: 0.55.7(postcss@8.4.31)(vite@4.4.9)
       unplugin-icons: 0.17.0
       unplugin-vue-components: 0.25.2(vue@3.3.4)
@@ -3295,7 +3304,7 @@ packages:
       resolve: 1.22.6
       resolve-from: 5.0.0
       resolve-global: 1.0.0
-      shiki: /shikiji-compat@0.6.8
+      shiki: /shikiji-compat@0.6.9
       unocss: 0.56.5(postcss@8.4.31)(vite@4.4.9)
       unplugin-icons: 0.17.0
       unplugin-vue-components: 0.25.2(vue@3.3.4)
@@ -12837,22 +12846,10 @@ packages:
       vscode-textmate: 8.0.0
     dev: true
 
-  /shikiji-compat@0.6.8:
-    resolution: {integrity: sha512-/zU/ovJAOm+a0gnTf1PlOvvKHeWUOCqwXDt35KzYsPVvQoDCxUicHVrgiCcgSG79gGsMizR+x0CJDw//wQQpyQ==}
-    dependencies:
-      shikiji: 0.6.8
-    dev: true
-
   /shikiji-compat@0.6.9:
     resolution: {integrity: sha512-kEtoy/qn2O4d1vFnQlD/8+GmEe4+Inght42UZ9wVE4pp9RDU5/aaRvWyBOCoVoTaJHBBEm9qyvVTg5DBFy3vQQ==}
     dependencies:
       shikiji: 0.6.9
-    dev: true
-
-  /shikiji@0.6.8:
-    resolution: {integrity: sha512-K0axxNAdB9KvLUflU7QoLC7p6i2p1R2MFG0eP+iclbjtuEZqng99jHcg3VJL0GWRO67yozTICnykjo1HjOzdkg==}
-    dependencies:
-      hast-util-to-html: 9.0.0
     dev: true
 
   /shikiji@0.6.9:
