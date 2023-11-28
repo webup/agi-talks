@@ -8,6 +8,7 @@ hideInToc: true
 
 - [101：AGI 提示工程指北](https://agi-talks.vercel.app/101-prompt-engineering/)
 - [102：OpenAI API 浅出](https://agi-talks.vercel.app/102-openai-api/)
+- [103：LangChain Hub 提示词面面观](https://agi-talks.vercel.app/103-prompt-landscape/)
 
 <br />
 
