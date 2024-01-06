@@ -1,0 +1,17 @@
+{
+  "private": true,
+  "scripts": {
+    "dev": "slidev",
+    "build": "slidev build --base /240106-langchain-status/ --out ../../dist/240106-langchain-status",
+    "export": "slidev export --dark --timeout 0 --output ../../pdfs/240106-langchain-status.pdf"
+  },
+  "devDependencies": {
+    "@slidev/cli": "^0.46.1",
+    "@slidev/theme-seriph": "^0.21.3"
+  },
+  "slidev": {
+    "addons": [
+      "../../addons/webup"
+    ]
+  }
+}
