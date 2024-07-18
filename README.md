@@ -18,4 +18,5 @@
 
 ## 论坛 / 社区分享
 
-- [240106：LangChain 生态发展解读](https://agi-talks.vercel.app/240106-langchain-status/)
+- 2024.07.20 @ Shanghai：[LangChain 与 MinIO：基于 GenAI 的数据管理可行性探索](https://agi-talks.vercel.app/240720-langchain-minio/) 📍 [KubeSphere x OpenCSG Meetup](https://mp.weixin.qq.com/s/YB1M3oTR2NIrdOovoquEBA)
+- 2024.01.06：[LangChain 生态发展解读](https://agi-talks.vercel.app/240106-langchain-status/)

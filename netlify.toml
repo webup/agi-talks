@@ -47,6 +47,11 @@
   status = 200
 
 [[redirects]]
+  from = "/240720-langchain-minio/*"
+  to = "/240720-langchain-minio/index.html"
+  status = 200
+
+[[redirects]]
   from = "/"
   to = "https://github.com/webup/agi-talks"
   status = 302

@@ -8,6 +8,7 @@
     { "source": "/301-langchain-chatdoc/(.*)", "destination": "/301-langchain-chatdoc/index.html" },
     { "source": "/302-langserve/(.*)", "destination": "/302-langserve/index.html" },
     { "source": "/240106-langchain-status/(.*)", "destination": "/240106-langchain-status/index.html" },
+    { "source": "/240720-langchain-minio/(.*)", "destination": "/240720-langchain-minio/index.html" },
     { "source": "/(.*)", "destination": "/101-prompt-engineering/index.html" }
   ]
 }
