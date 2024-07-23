@@ -58,6 +58,6 @@
 
 [[redirects]]
   from = "/"
-  to = "/langchain-biweekly/index.html"
+  to = "https://github.com/webup/agi-talks"
   status = 302
   force = true
