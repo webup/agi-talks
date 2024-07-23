@@ -1,0 +1,17 @@
+{
+  "private": true,
+  "scripts": {
+    "dev": "slidev",
+    "build": "slidev build --base /langchain-biweekly/ --out ../../dist/langchain-biweekly",
+    "export": "slidev export --dark --timeout 0 --output ../../pdfs/langchain-biweekly.pdf"
+  },
+  "devDependencies": {
+    "@slidev/cli": "^0.49.20",
+    "@slidev/theme-seriph": "^0.25.0"
+  },
+  "slidev": {
+    "addons": [
+      "../addons/webup"
+    ]
+  }
+}

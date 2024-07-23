@@ -52,7 +52,12 @@
   status = 200
 
 [[redirects]]
+  from = "/langchain-biweekly/*"
+  to = "/langchain-biweekly/index.html"
+  status = 200
+
+[[redirects]]
   from = "/"
-  to = "https://github.com/webup/agi-talks"
+  to = "/langchain-biweekly/index.html"
   status = 302
   force = true
