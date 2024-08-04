@@ -59,6 +59,132 @@ Sharing key product updates & use case examples
 layout: quote
 ---
 
+# LangChain Updates 📍 July 29 <sup>2024</sup>
+
+✨ Updates x 5，📝 Tutorial x 1，🎙️ Presentation x 1
+
+---
+layout: iframe-right
+url: https://blog.langchain.dev/improving-core-tool-interfaces-and-docs-in-langchain/
+---
+
+# ✨ 实用 5️⃣，难度 3️⃣
+
+- 🦜🔗 改进工具调用相关接口和文档
+
+我们对核心的工具接口和文档进行了优化，简化了工具集成流程，提高了对多样化输入的处理能力，并能够输出更复杂的成果。
+
+这些优化使得在 LangChain 中更高效地使用工具，并大幅降低了编写自定义工具时的工作量。
+
+<T>We've improved our core tool interfaces and docs to simplify tool integrations and better handle diverse inputs, plus return complex outputs. These improvements enable more robust tool use in LangChain and reduce the manual effort of writing custom wrappers or interfaces.</T>
+
+---
+layout: iframe-right
+url: https://changelog.langchain.com/announcements/initialize-any-model-in-one-line-of-code
+---
+
+# ✨ 实用 5️⃣，难度 2️⃣
+
+- 🦜🔗 初始化任何模型只需一行代码
+
+LangChain 集成了许多聊天模型，导入方式繁多，记忆起来较为困难。
+
+为了简化操作，我们在 LangChain 为 [Python](https://python.langchain.com/v0.2/docs/how_to/chat_models_universal_init/) 和 [JavaScript](https://js.langchain.com/v0.2/docs/how_to/chat_models_universal_init/) 增加了一个通用的模型初始化器。这样，您就可以使用任何常见的聊天模型，无需记住不同的导入路径和类名，使操作更加便捷。
+
+使用它与 OpenAI、Anthropic、Gemini、Bedrock、Cohere 等平台一起使用，更方便！
+
+<T>LangChain now has a universal model initializer that makes it easy to use any of the common chat models. You can use it with OpenAI, Anthropic, Gemini, Bedrock, and Cohere, making it even easier to use them with LangChain.</T>
+
+---
+layout: iframe-right
+url: https://changelog.langchain.com/announcements/build-prompts-faster-and-compare-in-langsmith-playground
+---
+
+# ✨ 实用 5️⃣，难度 1️⃣
+
+- 🦜⚒️ LangSmith Playground 可分栏对比
+
+您现在可以在 LangSmith 的 Playground 中轻松并排比较多个提示和模型配置。
+
+快速构建、测试和迭代：一边创建提示一边对比，实验更改，并在单一视图中评估数据集。前往 LangSmith 的 Playgroud 侧边栏，点击 `Compare` 功能进行体验。
+
+<T>Now you can easily compare multiple prompts and model configurations in the LangSmith Playground. Build, test, and iterate faster: build prompts side-by-side, experiment with changes, and evaluate datasets in a single view.</T>
+
+---
+layout: iframe-right
+url: https://changelog.langchain.com/announcements/filtering-runs-within-the-trace-view
+---
+
+# ✨ 实用 5️⃣，难度 1️⃣
+
+- 🦜⚒️ LangSmith [在追踪视图中过滤 Run 条目](https://docs.smith.langchain.com/how_to_guides/monitoring/filter_traces_in_application#filtering-runs-within-the-trace-view)
+
+您现在可以在 LangSmith 的跟踪视图中过滤出特定的 Run。这对于长时间运行的 Agent 特别有帮助，它们可以生成包含数百甚至数千个子运行。
+
+不再需要在总览和详情面板之间来回切换，以查看您最关键的问题。
+
+<T>Now you can filter out specific Runs in the LangSmith Trace View. This is especially helpful for long-running Agents that can generate thousands of sub-runs. No more switching back and forth between the runs table and the run details pane to see your most critical issues.</T>
+
+---
+layout: iframe-right
+url: https://changelog.langchain.com/announcements/enhanced-key-value-search-matching-inputs-and-outputs
+---
+
+# ✨ 实用 4️⃣，难度 1️⃣
+
+- 🦜⚒️ [增强键值搜索](https://docs.smith.langchain.com/how_to_guides/monitoring/filter_traces_in_application#filter-based-on-input--output-key-value-pairs)，匹配输入和输出
+
+用户现在可以通过 JSON 键值对在输入或输出中过滤跟踪或运行。这为 LangSmith 提供了更强大的搜索体验，因为您现在可以匹配 JSON 输入和输出中的确切字段（而不是仅限关键字搜索）。
+
+匹配可发生的位置：顶级 / 嵌套键值对
+
+<T>Users can now filter traces or runs by JSON key-value pairs in the input or output. This provides a more powerful search experience for LangSmith, as you can now match exact fields in JSON inputs and outputs (instead of just keyword searches，and matching can happen at: top-level / nested key-value pairs).</T>
+
+---
+layout: iframe-right
+url: https://www.youtube.com/embed/Nfk99Fz8H9k?si=1nOx70QamLiAxBH3
+---
+
+# 📝 Ollama 工具调用
+
+工具是实用程序（例如 API 或自定义函数），可以被 LLM 调用，赋予模型新的能力。
+
+Ollama 最近增加了 [工具调用](https://ollama.com/blog) 功能，我们将其纳入了一个新的 [langchain-ollama](https://pypi.org/project/langchain-ollama/) 合作伙伴包中。
+
+在这个 [示例](https://github.com/webup/notebooks/blob/main/tool-calling-agent-local.ipynb) 中，我们展示了如何使用新的 Ollama 合作伙伴包来调用本地模型执行工具。
+
+同时，我们展示了如何在 LangGraph 中创建一个简单的工具调用 Agent，它使用本地运行的工具来执行网页搜索和向量存储检索。
+
+<T>Ollama recently added function calling and we've incorporated this into a new partner package. Here, we show how to use the new Ollama partner package to perform tool calling with a local model. We also show how to create a simple tool calling Agent in LangGraph that uses a local tool to perform web search and vector store retrieval.</T>
+
+---
+layout: iframe
+url: //player.bilibili.com/player.html?isOutside=true&aid=112875666476527&bvid=BV1JxvCeBE9r&cid=500001632722029&p=1&autoplay=0
+---
+
+---
+layout: iframe-right
+url: https://blog.langchain.dev/few-shot-prompting-to-improve-tool-calling-performance/
+---
+
+# 🎙️ 少样本助力工具调用
+
+实验表明 Few Shot 可显著提高工具调用准确性
+
+我们在两个数据集上进行了实验：
+
+- 第一个，[查询分析](https://smith.langchain.com/public/6f62ae8b-4d96-4f0f-8eef-177ae3e30a65/d) 数据集，是一个相当标准的设置，其中使用对 LLM 的单次调用根据用户问题调用不同的搜索索引。
+
+- 第二个，[多元宇宙数学](https://smith.langchain.com/public/f8b159be-89e4-4f9f-93a9-30434fd31cbf/d)，测试了在更具有 Agent 形态的 ReAct 工作流程的上下文中的函数调用（这涉及到对 LLM 的多次调用）。
+
+我们在多个 OpenAI 和 Anthropic 模型上进行了基准测试。我们尝试了不同的方法向模型提供少量示例，目的是看看哪种方法能产生最佳结果。
+
+<T>We ran a few experiments, which show how few-shot prompting can significantly enhance model accuracy - especially for complex tasks. Read on for how we did it (and the results).</T>
+
+---
+layout: quote
+---
+
 # LangChain Updates 📍 July 15 <sup>2024</sup>
 
 🌰 Samples x 3，📚 Guides x 4，🎙️ Presentations x 2，💼 Cases x 2
