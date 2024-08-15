@@ -59,6 +59,143 @@ Sharing key product updates & use case examples
 layout: quote
 ---
 
+# LangChain Updates 📍 Aug 12 <sup>2024</sup>
+
+🚀 Releases x 2，✨ Updates x 5，🎙️ Presentation x 1
+
+---
+layout: iframe-right
+url: https://blog.langchain.dev/langgraph-studio-the-first-agent-ide/
+---
+
+# 🚀 实用 5️⃣，难度 2️⃣
+
+- 🦜🕸️ LangGraph Studio：业内首个 Agent IDE
+
+[LangGraph Studio](https://github.com/langchain-ai/langgraph-studio) 提供了一种新的开发 LLM 应用的方法，通过提供专门的 IDE，实现复杂 Agent 应用的可视化、交互和调试。
+
+使用可视图表和编辑状态的能力，您可以更好地理解 Agent 工作流程并更快地迭代。LangGraph Studio 与 LangSmith 集成，让您能与队友协作追踪和调试故障。
+
+<T>LangGraph Studio provides a new way to develop LLM applications by providing a dedicated IDE that enables visualizing, interacting, and debugging complex Agent workflows. With the ability to visualize workflows using charts and edit states, you can better understand the Agent's workflow and iterate faster.</T>
+
+> 目前仅支持苹果芯片设备；需注册 LangSmith（免费）
+
+---
+layout: iframe-right
+url: https://blog.langchain.dev/langgraph-v0-2/
+---
+
+# 🚀 实用 4️⃣，难度 3️⃣
+
+- 🦜🕸️ LangGraph [v0.2](https://github.com/langchain-ai/langgraph/releases/tag/0.2.0) 引入新的 Checkpointer
+- 🦜🕸️ LangGraph Cloud 开放公开测试
+
+LangGraph 的关键支柱之一是其 [内置的持久化层](https://langchain-ai.github.io/langgraph/how-tos/persistence/)，通过 Checkpointer 实现。
+
+当您将 Checkpointer 与图一起使用时，可以管理图的状态。Checkpointer 在每个步骤中保存图的状态，从而支持以下功能在内的几个强大功能：
+
+- 会话存储：存储用户交互的完整历史
+- 错误恢复：从最后一个成功步骤的存储点执行
+- 人机协同：实施工具审批，等待人工输入等
+- 时间旅行：在任何执行历史点编辑图状态，并从那个时间点创建一个替代执行（即 Fork）
+
+> LangGraph Postgres Checkpointer 可用于生产级应用
+
+---
+layout: iframe
+url: //player.bilibili.com/player.html?isOutside=true&aid=1206121699&bvid=BV1vf421z7cp&cid=1603007386&p=1&autoplay=0
+---
+
+---
+layout: iframe-right
+url: https://python.langchain.com/v0.2/docs/how_to/chat_model_rate_limiting/
+---
+
+# ✨ 实用 4️⃣，难度 2️⃣
+
+- 🦜🔗 聊天模型的速率限制
+
+LangChain 内置了一个 [内存速率限制器](https://python.langchain.com/v0.2/docs/how_to/chat_model_rate_limiting/)，可以帮助您避免超过模型提供商允许的最大请求速率。
+
+您现在可以对任何聊天模型使用速率限制器，自 `langchain-core >= 0.2.24` 起可用。
+
+<T>LangChain has a built-in memory rate limiter that can help you avoid exceeding the maximum rate of requests allowed by the chat model provider. <br>You can now use the rate limiter for any chat model, available as of langchain-core 0.2.24.</T>
+
+---
+layout: iframe-right
+url: https://python.langchain.com/v0.2/docs/how_to/pydantic_compatibility/
+---
+
+# ✨ 实用 4️⃣，难度 3️⃣
+
+- 🦜🔗 [Pydantic 兼容性支持](https://python.langchain.com/v0.2/docs/how_to/pydantic_compatibility/) 提升
+
+LangChain API 现在允许使用 Pydantic v2 模型来使用 `BaseTool` 和 `StructuredTool`。这可以增强类型安全性，提高代码可读性，并简化工具和聊天模型的集成。
+
+许多聊天模型也支持在 `bind_tools` 和 `with_structured_output` 中接受 v2 模型（包括 Anthropic、OpenAI、Mistral 等）。
+
+这些更新需要 `langchain-core >= 0.2.23`。
+
+<T>LangChain APIs now allow using Pydantic v2 models with `BaseTool` and `StructuredTool`. Many chat models also support accepting Pydantic v2 models in `bind_tools` and `with_structured_output`.</T>
+
+---
+layout: iframe-right
+url: https://blog.langchain.dev/dynamic-few-shot-examples-langsmith-datasets/
+---
+
+# ✨ 实用 5️⃣，难度 2️⃣
+
+- 🦜⚒️ LangSmith 数据集动态生产少样本示例
+
+少样本示例（Few Shot）是一种常见的提高应用性能的技术。动态选择少样本提示的示例可以带来 [进一步的改进](https://blog.langchain.dev/few-shot-prompting-to-improve-tool-calling-performance/)。
+
+在 LangSmith 中，通过动态的少样本示例，您将可以一键索引数据集中的示例，并根据用户输入动态选择最相关的少样本示例。这使您能够快速迭代并提高 LLM 应用性能。
+
+<T>With dynamic few-shot examples in LangSmith, you can Index examples in your datasets in one click and dynamically select the most relevant few-shot examples based on user input. This lets you rapidly iterate and improve LLM app performance.</T>
+
+> 本功能目前处于封闭测试阶段，您可以通过 [此处](https://forms.gle/in9R6t9HNSYMBt7P7) 注册进入等待名单。计划在本月稍后进行公开发布。
+
+---
+layout: iframe
+url: https://www.youtube.com/embed/37VaU7e7t5o
+---
+
+---
+layout: iframe-right
+url: https://docs.smith.langchain.com/how_to_guides/human_feedback/annotation_queues#create-an-annotation-queue
+---
+
+# ✨ 实用 4️⃣，难度 1️⃣
+
+- 🦜⚒️ LangSmith 标注队列支持多标注者操作
+
+LangSmith 的标注队列现在支持允许多人审查单个运行（Run）条目。这使得协调多个标注员的数据审查更加容易。
+
+- 对于每个标注队列，您可以指定每个运行需要审查的用户数量
+- 如果启用了预订，运行结果将被第一个查看的人“预订”，防止多人进行多次审查
+- 当指定数量的审查人员将其标记为完成时，每个人的队列中都会移除这个任务
+
+<T>LangSmith's annotation queue now supports allowing multiple people to review an individual run. This makes it easier to coordinate data review across multiple annotators.</T>
+
+---
+layout: iframe-right
+url: https://blog.langchain.dev/tag/in-the-loop/
+---
+
+# 🎙️ In the Loop 更新
+
+着重讨论了如何构建和 Agent 配套的用户体验
+
+- [即时对话](https://blog.langchain.dev/ux-for-agents-part-1-chat-2/)：介绍最常见的对话应用场景，并讨论 “流式 / 非流式” 对话模式的优缺点
+- [后台运行](https://blog.langchain.dev/ux-for-agents-part-2-ambient/)：探讨如果帮助在后台运行的 Agent 与用户进行互动和建立联系
+  - 一个不错的示例应用是 [Devin](https://www.cognition.ai/blog/introducing-devin)，它可以让用户看到所有步骤，可以回退到特定时间点的开发状态，并从那里进行修正
+  - 对于 Agent 不知道该做什么或如何回答的情况，它需要引起用户的注意并寻求帮助
+- [用户界面](https://blog.langchain.dev/ux-for-agents-part-3/)：探讨了（批量）表格式、（动态）生成式、（侧边）协作式界面对于 Agent 的适用性和影响（引导 Agent 的能力建设）
+
+---
+layout: quote
+---
+
 # LangChain Updates 📍 July 29 <sup>2024</sup>
 
 ✨ Updates x 5，📝 Tutorial x 1，🎙️ Presentation x 1
