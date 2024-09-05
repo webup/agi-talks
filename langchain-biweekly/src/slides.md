@@ -49,11 +49,133 @@ Sharing key product updates & use case examples
     class="text-xl icon-btn opacity-50 !border-none !hover:text-white">
     <carbon-logo-github />
   </a>
-  <a href="https://github.com/webup/agi-talks/raw/master/pdfs/langchain-biweekly.pdf" target="_blank" alt="Download"
+  <!-- <a href="https://github.com/webup/agi-talks/raw/master/pdfs/langchain-biweekly.pdf" target="_blank" alt="Download"
     class="text-xl icon-btn opacity-50 !border-none !hover:text-white">
     <carbon-download />
-  </a>
+  </a> -->
 </div>
+
+---
+layout: quote
+---
+
+# LangChain Updates 📍 Sep 3 <sup>2024</sup>
+
+🚀 Release x 1，✨ Updates x 4，📖 Publication x 1，💼 Case x 1
+
+---
+layout: iframe-right
+url: https://blog.langchain.dev/javascript-langgraph-v02-cloud-studio/
+---
+
+# 🚀 实用 5️⃣，难度 4️⃣
+
+- 🦜🕸️ LangGraph.js v0.2 发布
+
+LangChain 团队推出了 [LangGraph.js v0.2.0](https://github.com/langchain-ai/langgraphjs)（基于 JS/TS 的 LangGraph 框架，以下是新功能：
+
+- [灵活流式处理](https://langchain-ai.github.io/langgraphjs/how-tos/stream-values/) 中间步骤和具有不同流式处理模式的聊天模型消息
+- [一个内置的 Checkpoint 系统](https://langchain-ai.github.io/langgraphjs/how-tos/persistence/)，可让您倒回过去的状态并调试错误，例如错误的模型响应
+- [原生的 Human-in-the-loop 支持](https://langchain-ai.github.io/langgraphjs/how-tos/breakpoints/)，允许您在图形中的任何给定点中断、更新和恢复
+- [并发节点](https://langchain-ai.github.io/langgraphjs/how-tos/map-reduce/) 支持同时运行（Fan Out）和组合（Fan in）来自多个节点的结果
+
+<br>
+
+> 在 LangGraph Studio 和 LangGraph Cloud 中也为 LangGraph.js 项目引入了测试版支持。
+
+---
+layout: iframe
+url: //player.bilibili.com/player.html?isOutside=true&aid=113040284517872&bvid=BV124sMe9E8N&cid=25625758392&p=1&autoplay=0
+---
+
+---
+layout: iframe-right
+url: https://changelog.langchain.com/announcements/generate-synthetic-examples-to-enhance-a-langsmith-dataset
+---
+
+# ✨ 实用 4️⃣，难度 2️⃣
+
+- 🦜⚒️ LangSmith 中为数据集生成合成数据
+
+现在，您可以在 LangSmith 中为数据集生成合成示例。使用您定义的数据结构，在 ChatOpenAI 的帮助下基于现有示例生成新示例。
+
+输入 API 密钥后，您可以手动选择参考示例，也可以让系统自动选择它们来生成您的合成数据。
+
+单击“生成”后，示例将出现在页面上。您可以选择要添加到数据集中的示例，并可选择在完成之前对其进行编辑。每个示例都将根据您指定的数据集架构进行验证，并在源元数据中标记为合成数据。
+
+<T>With LangSmith, you can generate synthetic examples for a dataset. Using your defined data structure, generate new examples based on existing examples using ChatOpenAI.</T>
+
+---
+layout: iframe-right
+url: https://changelog.langchain.com/announcements/resource-tags-to-organize-your-workspace-in-langsmith
+---
+
+# ✨ 实用 3️⃣，难度 2️⃣
+
+- 🦜⚒️ LangSmith 中组织工作区的资源标签
+
+您现在可以 [使用资源标签在 LangSmith 中组织 Workspace](https://docs.smith.langchain.com/how_to_guides/setup/set_up_resource_tags)。资源标签可帮助您有效地管理、分组、搜索和筛选工作区中的资源。
+
+资源可以是项目、数据集、提示、注释队列或部署。您现在可以跨应用程序和环境标记资源，以便在工作区中快速找到所需的资源。
+
+<T>You can now organize your Workspace in LangSmith using resource tags. Resource tags help you effectively manage, group, search, and filter resources in your Workspace.</T>
+
+---
+layout: iframe-right
+url: https://changelog.langchain.com/announcements/custom-dashboards-to-monitor-llm-app-performance
+---
+
+# ✨ 实用 4️⃣，难度 2️⃣
+
+- 🦜⚒️ LangSmith 自定义监控面板
+
+在 LangSmith 中创建 [自定义控制面板](https://docs.smith.langchain.com/how_to_guides/monitoring/dashboards)，以跟踪 LLM 应用程序性能的关键指标，例如成本、延迟和质量，包括来自用户或在线评估的反馈。
+
+您还可以比较图表中的数据，无论是比较具有相同单位的指标，还是比较不同模型或配置在一段时间内在单个指标上的性能。
+
+使用图表筛选器钻取特定数据集，并通过在 LangSmith 中保存、克隆或编辑图表来轻松维护图表。
+
+<T>Create custom dashboards in LangSmith to monitor the key metrics of your LLM application performance, including cost, latency, and quality, including feedback from users or online evaluations.</T>
+
+---
+layout: iframe-right
+url: https://changelog.langchain.com/announcements/langsmith-playground-v2-more-models-better-compatibility-faster-testing
+---
+
+# ✨ 实用 4️⃣，难度 2️⃣
+
+- 🦜⚒️ LangSmith Playground v2：更多模型、更好的兼容性、更快的测试
+
+让 Playground 变得更好 —— 以下是新功能：
+
+- 扩展的模型支持：尝试使用最新模型，并增加对各种提供商的访问，包括 Vertex AI、Mistral 和 Google Generative AI
+- 一键并发运行：通过单击一次从同一提示同时生成多达五个输出来即时测试输出一致性
+- 增强的工具兼容性：Playground 中支持所有支持工具调用的 LangChain 模型都使用工具，从而在测试和开发方面提供更大的灵活性
+- 统一布局：无论您是在调试跟踪、创建新提示还是跨数据集评估，都可以访问标准化界面
+
+---
+
+# 📖 [The Definitive Guide to Testing LLM Applications](https://www.langchain.com/testing-guide-ebook)
+
+本指南将帮助您提高测试过程的严谨性，以便您可以更快地迭代，而不会冒着令人尴尬或有害的回归风险
+
+![](https://cdn.prod.website-files.com/65c81e88c254bb0f97633a71/66b48c4ef6c17c82e46a6400_ebook-preview-01%402x-p-1600.webp)
+
+---
+layout: iframe-right
+url: https://blog.langchain.dev/customers-podium/
+---
+
+# 💼 [Podium](https://www.podium.com/product/ai-employee/) <Version>COMMERICAL</Version>
+
+- 🦜⚒️ LangSmith 进行数据集管理和微调
+
+最初，Podium 使用 LangChain 框架进行单轮交互。随着他们的代理用例对于广泛的客户和域变得越来越复杂，Podium 需要更好地了解他们的 LLM 调用和交互，并求助于 LangSmith 进行 LLM 测试和可观察性。
+
+- Podium 的测试方法：包括基线数据集策划、离线评估、收集反馈、优化、持续评估等。
+- 解决特定问题：如解决 AI Employee 难以识别对话自然结束的问题，通过创建数据集、升级模型等方式改进。
+- 客户支持：技术产品专员借助 LangSmith 清晰定位问题来源及类型，减少工程干预，提高支持效率和客户满意度。
+
 
 ---
 layout: quote
