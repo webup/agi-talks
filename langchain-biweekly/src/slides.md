@@ -59,6 +59,118 @@ Sharing key product updates & use case examples
 layout: quote
 ---
 
+# LangChain Updates 📍 Oct 1 <sup>2024</sup>
+
+🚀 Releases x 2，✨ Update x 1，💼 Cases x 2，🪬 Misc x 1
+
+---
+layout: iframe-right
+url: https://blog.langchain.dev/announcing-langchain-v0-3/
+---
+
+# 🚀 实用 5️⃣，难度 3️⃣
+
+- 🦜🔗 LangChain v0.3 发布
+
+[LangChain v0.3 发布](https://blog.langchain.dev/announcing-langchain-v0-3/)，包含以下新功能：
+
+- Python：内部所有包从 Pydantic 1 升级到 Pydantic 2，不再支持 Pydantic 1（24 年 6 月）和 Python 3.8（24 年 10 月）。
+- JavaScript：所有 LangChain 包将 `@langchain/core` 作为对等依赖而非直接依赖，回调默认非阻塞，移除一些弃用的入口。
+- 将更多集成从 `langchain-community` 移到自己的 `langchain-{name}` 包，改进了集成文档和 API 参考，简化了工具定义和使用，添加了与聊天模型交互的工具等。
+
+---
+layout: iframe
+url: //player.bilibili.com/player.html?isOutside=true&aid=113153631324058&bvid=BV1intveWE9R&cid=25901533004&p=1&autoplay=0
+---
+
+---
+layout: iframe-right
+url: https://blog.langchain.dev/launching-langgraph-templates/
+---
+
+# 🚀 实用 5️⃣，难度 3️⃣
+
+- 🦜🕸️ LangGraph 模板发布
+
+同时在 Python 和 JS 中可用，针对常见用例设计，便于配置和部署到 LangGraph Cloud。可通过下载最新版 [LangGraph Studio](https://studio.langchain.com/) 使用，也可作为独立的 GitHub 仓库使用。
+
+LangGraph 是用于编排智能应用的底层框架，LangGraph 模板在提供低层级功能控制的同时，为开发者提供了便捷的入口。初始发布了三个高质量模板和一个空模板：
+
+- RAG Chatbot：基于特定数据源的聊天机器人，会从搜索索引中检索数据并生成响应。
+- ReAct Agent：最通用的智能体架构，通过工具调用选择正确工具并循环执行。
+- Data Enrichment Agent：针对特定表单进行研究的智能体，采用 ReAct 并包含反思步骤。
+
+---
+layout: iframe
+url: //player.bilibili.com/player.html?isOutside=true&aid=113182035152316&bvid=BV1vuskePEDR&cid=25964315263&p=1&autoplay=0
+---
+
+---
+layout: iframe
+url: //player.bilibili.com/player.html?isOutside=true&aid=113188024618136&bvid=BV1yMsXeyEok&cid=25974998571&p=1&autoplay=0
+---
+
+---
+layout: iframe-right
+url: https://blog.langchain.dev/asssistant-editor/
+---
+
+# ✨ 实用 4️⃣，难度 3️⃣
+
+- 🦜🕸️ LangGraph Studio Assistant 编辑器
+
+Assistants 是具有特定配置的图的实例，可以在不改变底层图逻辑的情况下快速改变智能体行为，可用于实验和无代码定制。
+
+[Assistant Editor](https://blog.langchain.dev/asssistant-editor/) 是 LangGraph Studio 中一个强大的新功能，为开发者和非技术用户提供了可视化的编辑工具，无需深入代码即可配置和定制基于 LLM 的智能体。它的功能包括：
+
+- 直观配置：通过友好界面轻松调整提示、选择语言模型和修改其他图参数。
+- 实时预览：通过选择不同的助手配置来试用。
+- 版本控制：保存和跟踪助手配置的不同版本，便于比较性能或恢复更改。
+
+---
+layout: iframe
+url: https://www.youtube.com/embed/XQYe3u5e_c4?si=EzD8KxK99KvcnaNd
+---
+
+---
+layout: iframe-right
+url: https://blog.langchain.dev/customers-replit/
+---
+
+# 💼 [Replit](https://replit.com/?ref=blog.langchain.dev) <Version>COMMERICAL</Version>
+
+- 🦜🕸️ LangGraph 和 🦜⚒️LangSmith 的应用
+
+Replit Agent 在 LangGraph 上构建了复杂工作流，实现了高度定制化的智能体工作流，具有高度控制和平行执行能力。
+
+与 LangSmith 集成：LangGraph 与 LangSmith 无缝集成，使 Replit 能够深入了解智能体交互，以调试棘手问题。
+
+- 改进大型追踪的性能和规模：其他 LLMOps 解决方案通常只监控对 LLM 提供者的单个 API 请求，而 LangSmith 从一开始就专注于追踪 LLM 应用的整个执行流程。
+- 在追踪内搜索和过滤以确定问题：LangSmith 增加了在追踪内搜索的新功能，用户可以根据关心的标准直接过滤。
+
+---
+layout: iframe-right
+url: https://blog.langchain.dev/customers-tradestack/
+---
+
+# 💼 TradeStack <Version>COMMERICAL</Version>
+
+- 🦜🕸️ LangGraph Cloud 实现 6 周内推出 MVP
+
+TradeStack 是一家英国初创公司，旨在提高贸易企业的效率。其发现贸易企业创建项目报价的后台任务耗时过长，于是决定打造一个 AI 助手将时间从数小时缩短至数分钟。
+
+- 面临挑战：设计过程中存在用户输入多样或模糊、不同用户起点和终点不同、LLM 节点规划或路由不准确等失败点。
+- LangGraph 解决方案：LangGraph 提供了控制推理和记忆流程的框架，Tradestack 利用其进行个性化推理，通过配置变量定制指令和路径。还使用 LangGraph 模版作为起点，采用分层多智能体系统，并通过 LangGraph Studio 快速识别缺陷、迭代设计和提高性能。
+
+---
+layout: iframe
+url: //player.bilibili.com/player.html?isOutside=true&aid=113221881106265&bvid=BV1EHxmesEW9&cid=26066616708&p=1&autoplay=0
+---
+
+---
+layout: quote
+---
+
 # LangChain Updates 📍 Sep 3 <sup>2024</sup>
 
 🚀 Release x 1，✨ Updates x 4，📖 Publication x 1，💼 Case x 1
