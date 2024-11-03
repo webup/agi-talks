@@ -6,7 +6,7 @@ theme: seriph
 titleTemplate: '%s｜WebUP'
 # some information about the slides, markdown enabled
 info: |
-  # LangChain Biweekly Updates
+  # LangChain Monthly Updates
   Sharing key product updates & use case examples.
 # favicon, can be a local file path or URL
 favicon: https://files.codelife.cc/user-website-icon/20220523/5hyKeZxOknU2owAPvnSWD1388.png?x-oss-process=image/resize,limit_0,m_fill,w_25,h_25/quality,q_92/format,webp
@@ -30,7 +30,7 @@ class: text-center
 background: https://s2.loli.net/2024/07/22/sv4EPguXlNT7xBS.jpg 
 ---
 
-# 🦜🔗 LangChain Biweekly
+# 🦜🔗 LangChain Monthly
 
 Sharing key product updates & use case examples 
 
@@ -54,6 +54,203 @@ Sharing key product updates & use case examples
     <carbon-download />
   </a> -->
 </div>
+
+---
+layout: quote
+---
+
+# LangChain Updates 📍 Oct 31 <sup>2024</sup>
+
+🚀 Release x 1，✨ Updates x 6，💼 Cases x 2，🪬 Misc x 1
+
+---
+layout: iframe-right
+url: https://blog.langchain.dev/langgraph-platform-announce/
+---
+
+# 🚀 实用 5️⃣，难度 3️⃣
+
+- 🦜🕸️ [LangGraph Platform 发布](https://blog.langchain.dev/langgraph-platform-announce/)
+
+LangGraph Platform 是用于部署和扩展 LangGraph 应用的服务，主要组件包括：
+
+- LangGraph Server：提供部署和管理 Agent 的方式，具备处理大规模工作负载的能力
+- LangGraph Studio：用于可视化、交互和调试智能代理应用程序；已有 macOS 桌面版本
+- LangGraph CLI 和 Python/JS SDK
+
+主要部署选项包括：
+
+- Self-Hosted Lite：免费版本，可在本地或自行托管运行，执行节点数上限为 100 万
+- Cloud SaaS：作为 LangSmith 的一部分提供完全托管服务，目前处于 Beta 开放测试阶段
+
+---
+layout: iframe-right
+url: https://changelog.langchain.com/announcements/langgraph-long-term-memory-support
+---
+
+# ✨ 实用 5️⃣，难度 3️⃣
+
+- 🦜🕸️ LangGraph 长期记忆支持
+
+可用于 Python 和 JavaScript，旨在提升 Agent 在对话中的表现，主要功能包括：
+
+- 持久化记忆：能在不同对话会话间存储和回忆信息，使 Agent 可保留偏好并持续改进
+- 灵活命名空间：使用自定义命名空间组织记忆，便于区分不同用户、组织或上下文
+- JSON 文档存储：方便数据操作与检索
+- 基于内容搜索：在命名空间中筛选和搜索记忆
+
+官方提供了一系列的教程，包括概念指南（[Python](https://langchain-ai.github.io/langgraph/concepts/memory/) / [JavaScript](https://langchain-ai.github.io/langgraphjs/concepts/memory/)）、操作指南（[Python](https://langchain-ai.github.io/langgraph/how-tos/cross-thread-persistence/) / [JavaScript](https://langchain-ai.github.io/langgraphjs/how-tos/cross-thread-persistence/)），以及配套的应用开发模板（[Python](https://github.com/langchain-ai/memory-agent) / [JavaScript](https://github.com/langchain-ai/memory-agent-js)）。
+
+---
+layout: iframe
+url: //player.bilibili.com/player.html?isOutside=true&aid=113363480806363&bvid=BV1okyrYhEES&cid=26447446134&p=1&autoplay=0
+---
+
+---
+layout: iframe-right
+url: https://www.youtube.com/embed/ZGnI9z8CGwI?si=ssNEzvGszg_YdOpp
+---
+
+# ✨ 实用 5️⃣，难度 1️⃣
+
+- 🦜🕸️ LangGraph Studio 支持子图展示和操作
+
+子图对构建多智能体系统有重要的价值和意义。
+
+本次新增的功能包括：
+
+- 支持子图节点的图标显示、展开查看内部图、交互时展示更多细节
+- 支持子图级别的 Human-in-the-Loop 的操作
+- 支持修改节点及时空回溯以及重放子图
+
+<T>Enabled subgraphs in LangGraph Studio and got human-in-the-loop support for subgraphs. This video walks through how to use subgraphs in LangGraph Studio.</T> 
+
+---
+layout: iframe-right
+url: https://docs.smith.langchain.com/how_to_guides/evaluation/bind_evaluator_to_dataset#custom-code-evaluators
+---
+
+# ✨ 实用 4️⃣，难度 3️⃣
+
+- 🦜⚒️ LangSmith 支持可运行代码的评估器
+
+该功能可为当前数据集添加新的自动评估器；评估器可在 LangSmith 的 Playground 中跨数据集运行，无需编码，方便开发者在 UI 中设置评估器，并在 Playground 中迭代和运行实验时与团队成员（如提示工程师或产品经理）协作。
+
+使用 Python 编写评估代码，支持所有标准 Python 库以及部分外部库（如 `numpy` 和 `jsonschema`，完整列表见 [文档](https://docs.smith.langchain.com/how_to_guides/evaluation/bind_evaluator_to_dataset#custom-code-evaluators)），通过定义函数来执行评估逻辑。
+
+函数接收 `run`（运行结果）和 `example`（示例数据）作为参数，并返回评估结果（如 `exact_match` 等）。
+
+---
+layout: iframe-right
+url: https://changelog.langchain.com/announcements/enhanced-trace-comparison-view-with-auto-trace-tracking-and-diff-viewer
+---
+
+# ✨ 实用 4️⃣，难度 2️⃣
+
+- 🦜⚒️ Trace 比较视图支持自动对齐和差异查看
+
+LangSmith 对 Trace 比较视图进行了重大改进，旨在为用户提供更高效的分析体验。这些改进使得用户在比较不同的运行轨迹时更加轻松便捷。
+
+- 自动跟踪：新增的自动跟踪功能，当用户逐步查看一个 Trace 的 Run 条目时，另一个 Trace 中的相应 Run 条目会自动更新。
+- 同步滚动：同步滚动功能允许用户同时滚动查看两个轨迹，无需来回切换即可轻松发现差异或相似之处，进一步提升了比较的便利性。
+- 差异查看：添加的差异查看器能够可视化两个运行的输入和输出之间的差异。
+
+---
+layout: iframe-right
+url: https://changelog.langchain.com/announcements/bulk-data-export-from-langsmith-for-offline-analysis
+---
+
+# ✨ 实用 4️⃣，难度 3️⃣
+
+- 🦜⚒️ LangSmith 支持批量导出数据集
+
+LangSmith 批量数据导出处于测试阶段，支持 LangSmith Plus 和企业计划，数据以 Parquet 格式可导出到 S3 存储桶或兼容存储。
+
+- 可查询的外部工具：可在 BigQuery、Snowflake、RedShift、DuckDB、Jupyter Notebooks、ClickHouse 等中查询数据。
+- 工作方式：按项目和日期范围启动导出，系统会管理并发、重试和处理运行超时，确保顺利导出，数据格式适合分析且与 LangSmith 运行数据格式相同。
+
+<br>
+
+> 目前在测试阶段，需联系 support@langchain.dev 启用
+
+---
+layout: iframe-right
+url: https://docs.smith.langchain.com/observability/how_to_guides/tracing/trace_with_vercel_ai_sdk
+---
+
+# ✨ 实用 3️⃣，难度 2️⃣
+
+- 🦜⚒️ 支持 Vercel AI SDK 的 Trace 跟踪
+
+对于 Next.js，在项目根目录创建 `instrumentation.js` 文件进行设置：
+
+```js {5-8}{maxHeight:'130px'}
+import { registerOTel } from "@vercel/otel";
+import { AISDKExporter } from "langsmith/vercel";
+
+export function register() {
+  registerOTel({
+    serviceName: "langsmith-vercel-ai-sdk-example",
+    traceExporter: new AISDKExporter(),
+  });
+}
+```
+
+在 AI SDK 调用中添加参数进行追踪：
+
+```js {4}{maxHeight:'120px'}
+import { AISDKExporter } from "langsmith/vercel";
+
+await streamText({
+  experimental_telemetry: AISDKExporter.getSettings(),
+  model: openai("gpt-4o-mini"),
+  prompt: "Write a vegetarian lasagna recipe for 4 people.",
+});
+```
+
+---
+layout: iframe-right
+url: https://blog.langchain.dev/customers-rexera/
+---
+
+# 💼 [Rexera](https://www.rexera.com/) <Version>COMMERICAL</Version>
+
+- 背景与目标：Rexera 致力于革新房地产交易行业，利用 AI 自动化工作流程，开发了 AI Agent 执行多种任务。
+- 初始方法及局限：单提示 LLM 因无法把握工作流全貌、上下文有限和处理多维场景能力不足，难以应对复杂工作流。
+- 尝试 CrewAI 后的问题：改用 CrewAI 多代理方法，每个代理负责交易部分流程，使假阳性和假阴性率有所降低。然而，CrewAI 在复杂场景决策时缺乏精确控制，可能导致错误。
+- 迁移至 LangGraph 的优势：可定制决策路径，其循环和分支能力为质量控制应用带来显著改进。以加急订单为例，LangGraph 创建的树形结构使应用能依需求选择处理路径，提高了准确性和一致性。
+
+---
+layout: iframe-right
+url: https://blog.langchain.dev/unify-launches-agents-for-account-qualification-using-langgraph-and-langsmith/
+---
+
+# 💼 [Unify](https://www.unifygtm.com/) <Version>COMMERICAL</Version>
+
+- 功能与目标用例：Unify 推出的 Agent 是新功能，属于自动化套件 “Plays” 一部分，类似研究工具，可通过网络搜索等操作研究公司或人员并回答问题，初始目标用例为账户资格审查，即判断公司是否符合理想客户画像。
+- `v0` 版本：以 LangGraph 为状态机框架，LangSmith 为实验和追踪框架，构建了极简 Agent，能处理简单任务。
+- `v1` 版本：构建更复杂结构，增加初始计划步骤和反思步骤。计划生成时，`o1-preview` 表现出色，生成计划详细、实用，但速度慢。
+- `v2` 版本：沿用计划-反思-工具状态机结构，重点优化速度和用户体验。
+
+---
+layout: two-cols
+---
+
+<Tweet id="1851295575045775376" scale="0.9" />
+
+::right::
+
+<Tweet id="1851295578308935807" scale="0.9" />
+
+---
+layout: two-cols
+---
+
+<Tweet id="1851295584684298716" scale="0.9" />
+
+::right::
+
+<Tweet id="1851295590157803888" scale="0.9" />
 
 ---
 layout: quote
